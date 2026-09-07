@@ -1,0 +1,34 @@
+Väli,Soovitatud väärtus,Kindlus,Põhjendus
+Meetme nimetus,Ettevõtja teadus- ja arendustöötaja toetus,kõrge,Ametlik nimetus on EISi lehel ja määruses sama. (EIS)
+Suurim toetus (€),määramata; kuni 50% TA-töötaja tulumaksust,keskmine,"EIS ei anna fikseeritud eurodes ülempiiri taotleja kohta, vaid toetuse valemi: kuni 50% TA-töötaja eest deklareeritud töötasult arvutatud tulumaksust. (EIS)"
+Omafinantseering (%),määramata,keskmine,"Tegemist ei ole tavapärase projekti omafinantseeringuga; allikas kirjeldab toetuse arvutust tulumaksu põhjal, mitte omaosaluse määra. (Riigi Teataja)"
+Kogu toetussumma (€),2 500 000,kõrge,EISi lehel on kogu toetussummaks märgitud 2 500 000 eurot. (EIS)
+Staatus,tulemas,kõrge,EISi lehel on staatus „Tulemas”; 2025. aasta taotlemine on lõppenud ja uus voor avatakse 2026. aasta alguses. (EIS)
+Meetme kirjeldus,"Toetus on mõeldud Eesti äriregistrisse kantud äriühingutele, kus töötab vähemalt üks teadus- ja arendustöötaja. Meetme eesmärk on kasvatada erasektori teadus- ja arendustegevuse mahtu ning toetada TA-töötajate töökohtade säilimist ja loomist. Toetust antakse TA-töötaja töötasuga seotud kulude katmiseks ning väljamakse arvutatakse Maksu- ja Tolliameti andmete põhjal. Toetust taotletakse voorupõhiselt ning toetatav periood avaldatakse EISi veebilehel.",kõrge,"Süntees EISi lehe ja määruse põhjal: eesmärk, taotleja, toetatav kulu ja voorupõhisus on allikates otseselt kirjeldatud. (EIS)"
+Link,https://eis.ee/teenused/teadus-ja-arendustootaja-toetus/?context=ettevote-eestis,kõrge,Kasutaja antud peamine EISi link.
+Sobiv taotleja,ettevõte,kõrge,Toetust saavad taotleda Eesti äriregistrisse kantud äriühingud. (EIS)
+Ettevõtte suurus,kõik,keskmine,"Allikas ei sea VKE-piirangut; taotlejaks on Eesti äriregistrisse kantud äriühing, kus töötab vähemalt üks TA-töötaja. (Riigi Teataja)"
+Piirkond,Eesti,kõrge,Taotleja peab olema Eesti äriregistrisse kantud äriühing. (EIS)
+Sektor,kõik sektorid,keskmine,"EISi leht ja määrus ei nimeta konkreetset sektoripiirangut, kuid kohaldub VTA määruse välistustele. (Riigi Teataja)"
+Valdkond,TAIE fookusvaldkonnad; innovatsioon,keskmine,Meede on suunatud erasektori TA mahu kasvatamisele ja arendustegevuse soodustamisele; konkreetseid TAIE fookusvaldkondi EISi lehel ei ole eraldi loetletud. (EIS)
+Projekti tüüp,teadus- ja arendusprojekt,kõrge,TA-töötaja määratlus ja toetuse eesmärk on seotud teadus- ja arendusprojektide ning TA-tegevusega. (EIS)
+AI nõue,sobib,keskmine,"AI ei ole nõutud ega mainitud, kuid AI-põhine TA tegevus võib põhimõtteliselt sobida, kui see vastab TA määratlusele."
+T&A nõue,nõutav,kõrge,Meede on otseselt seotud TA-töötajate ja ettevõtte TA kuludega. (Riigi Teataja)
+Arengufaas,kontseptsioon; prototüüp; piloot,keskmine,"TA tegevuste kirjeldus hõlmab TA-projektide planeerimist, tehnilist tööd, prototüüpide ehitamist, laboratoorseid töid ja testimist. (EIS)"
+Partneri nõue,ei,kõrge,Allikad ei sea partneri või konsortsiumi kaasamise nõuet; taotlejaks on äriühing. (Riigi Teataja)
+Ülikoolipartner,ei ole vajalik,kõrge,Ülikooli või teadusasutuse kaasamise nõuet ei ole esitatud.
+Välistavad tingimused,· ettevõte ei ole Eesti äriregistris;· ettevõttes puudub vähemalt üks TA-töötaja;· TA-töötajaga tööleping ei ole tähtajatu ega kehti vähemalt 12 kuud;· VTA piirmäär on ületatud;· maksuvõlg üle 100 € või nõuetekohaselt ajatamata;· majandusaasta aruanded või maksudeklaratsioonid esitamata;· juhatuse liikme tasu;· VTA määruse artikli 1 lõike 1 välistatud juhtumid,kõrge,"Välistused tulenevad EISi lehelt ja määruse nõuetest taotlejale, töölepingule, VTA piirile ja abikõlblikele kuludele. (EIS)"
+Kontrollkohad,· kontrolli uue taotlusvooru tähtaega ja eelarvet;· kontrolli toetatavat perioodi;· kontrolli VTA jääki;· kontrolli TA-töötaja vastavust määratlusele;· kontrolli TA tegevuse osakaalu tööajas;· kontrolli MTA deklareeritud maksuandmeid;· kontrolli Statistikaametile TA kulude andmete esitamise kohustust,kõrge,"Voor, eelarve ja toetatav periood avaldatakse EISi veebilehel; taotluses tuleb esitada TA-töötaja andmed ja TA tegevuse osakaal ning toetuse arvutus sõltub deklareeritud maksuandmetest. (EIS)"
+,,,
+2) Ebaselged või kontrollimist vajavad kohad,,,
+,,,
+"· Suurim toetus eurodes – allikas annab toetuse valemi, mitte üheselt fikseeritud eurodes ülempiiri taotleja kohta.",,,
+"· Omafinantseering – tavapärane omafinantseeringu määr ei kohaldu selgelt, sest toetus arvutatakse TA-töötaja tulumaksu alusel.",,,
+"· Staatus ja vooru aeg – EISi lehe järgi on 2025. aasta voor lõppenud ja uus voor tuleb 2026. aasta alguses; enne tabeli lõplikku kasutamist tuleb kontrollida, kas 2026. aasta voor on juba avatud või lõppenud.",,,
+"· Sektor – sektoripiirangut ei ole allikas eraldi nimetatud, kuid VTA määruse välistused võivad teatud juhtudel toetuse andmist piirata.",,,
+"· AI nõue – AI ei ole meetmes nimetatud; „sobib” on tõlgendus juhul, kui AI-projekt vastab TA tegevuse määratlusele.",,,
+,,,
+3) Võimalikud lisalingid kontrollimiseks,,,
+,,,
+"· TA tegevuste ja töötajate juhend – aitaks täpsustada välju „T&A nõue”, „Arengufaas”, „Välistavad tingimused” ja „Kontrollkohad”, eriti TA-töötaja määratluse ja TA tegevuse osakaalu hindamisel. Link on EISi lehel olemas, kuid ma ei kasutanud seda eraldi allikana enne sinu luba.",,,
+"· Taotluse täitmise juhend – aitaks kontrollida taotlusandmete, dokumentide ja tehniliste esitamisnõuete täpsust väljade „Kontrollkohad” ja „Välistavad tingimused” jaoks.",,,

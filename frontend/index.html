@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI Rahastusnõustaja</title>
+<style>
+  :root {
+    --bg: #0f172a; --card: #1e293b; --line: #334155; --text: #e2e8f0;
+    --muted: #94a3b8; --accent: #38bdf8; --accent2: #22c55e; --warn: #f59e0b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 15px/1.55 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
+
+  /* Login gate. Covers the app until /me confirms a session, so nothing of the
+     form is visible (or fillable) to someone without a code. */
+  #login-overlay {
+    position: fixed; inset: 0; z-index: 100; display: none;
+    background: var(--bg); overflow-y: auto;
+    padding: 48px 20px;
+  }
+  #login-overlay.show { display: block; }
+  #login-overlay .card { max-width: 420px; margin: 0 auto; }
+  #login-overlay h2 { margin: 0 0 6px; font-size: 20px; }
+  #login-error { color: #ef4444; font-size: 14px; margin: 10px 0 0; display: none; }
+  #login-code { text-transform: uppercase; letter-spacing: 2px; font-size: 18px; }
+  .consent {
+    color: var(--muted); font-size: 12.5px; line-height: 1.5;
+    border-top: 1px solid var(--line); margin-top: 20px; padding-top: 14px;
+  }
+  .logout-row { text-align: right; margin: -8px 0 12px; }
+  h1 { font-size: 26px; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 28px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px; margin-bottom: 18px;
+  }
+  label { display: block; font-weight: 600; margin: 16px 0 6px; }
+  .hint { font-weight: 400; color: var(--muted); font-size: 13px; }
+  .req { color: #ef4444; font-weight: 700; }
+  .sector-list { margin: 0 0 8px; line-height: 1.45; }
+  input, select, textarea {
+    width: 100%; padding: 10px 12px; border-radius: 9px;
+    border: 1px solid var(--line); background: #0b1220; color: var(--text); font: inherit;
+  }
+  textarea { min-height: 110px; resize: vertical; }
+  select[multiple] { min-height: 140px; }
+  .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; margin-top: 6px; }
+  .checks label { display: flex; align-items: center; gap: 8px; font-weight: 400; margin: 0; }
+  .checks input { width: auto; }
+  button {
+    background: var(--accent); color: #041018; border: 0; border-radius: 10px;
+    padding: 12px 22px; font-weight: 700; font-size: 15px; cursor: pointer; margin-top: 22px;
+  }
+  button.ghost { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+  button:disabled { opacity: .5; cursor: default; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hidden { display: none; }
+  .result-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .pick {
+    display: flex; align-items: flex-start; gap: 10px; flex: 1; min-width: 0;
+    cursor: pointer; margin: 0; font-weight: 400;
+  }
+  .pick input { width: auto; margin-top: 4px; flex-shrink: 0; cursor: pointer; accent-color: var(--accent2); }
+  .pick-title { margin: 0; cursor: pointer; }
+  .score {
+    background: var(--accent2); color: #06210f; font-weight: 800;
+    border-radius: 999px; padding: 3px 12px; font-size: 14px; white-space: nowrap;
+  }
+  .meta { color: var(--muted); font-size: 14px; margin: 6px 0 12px; }
+  .badge-warn { color: var(--warn); font-weight: 700; }
+  .checklist { background: #0b1220; border-radius: 9px; padding: 12px 14px; margin: 12px 0; }
+  .srcwarn { border-left: 3px solid var(--warn); background: #2a1810; border-radius: 6px;
+             padding: 10px 12px; margin: 12px 0; font-size: 13px; }
+  .srcwarn h4 { margin: 0 0 6px; font-size: 13px; color: var(--warn); }
+  .srcwarn ul { margin: 0; padding-left: 18px; }
+  .srcwarn li { margin: 3px 0; }
+  .srcwarn .cite { color: #9aa4b2; display: block; }
+  /* Info, mitte hoiatus — sama kuju kui .srcwarn, aga tahtlikult neutraalne
+     toon, et akti uuenemine ei loeks visuaalselt vastuoluna. */
+  .srcact { border-left: 3px solid #3b4757; background: #101725; border-radius: 6px;
+            padding: 10px 12px; margin: 12px 0; font-size: 13px; color: #9aa4b2; }
+  .srcact a { color: var(--accent); }
+  .srcfresh { color: #7d8793; font-size: 12px; margin-top: 8px; }
+  .checklist h4 { margin: 0 0 8px; font-size: 14px; color: var(--warn); }
+  .checklist ul { margin: 0; padding-left: 18px; }
+  .recommendation { background: #0b1220; border-radius: 9px; padding: 12px 14px; margin: 12px 0; }
+  .recommendation h4 { margin: 0 0 8px; font-size: 14px; color: var(--accent2); }
+  .recommendation ul { margin: 0; padding-left: 18px; }
+  .fit-explain { margin: 12px 0; }
+  .fit-explain summary { font-weight: 600; color: var(--accent); cursor: pointer; }
+  .fit-explain ul { margin: 8px 0 0; padding-left: 18px; }
+  .fit-explain p { margin: 8px 0 0; color: var(--muted); }
+  .links a { color: var(--accent); display: inline-block; margin-right: 14px; word-break: break-all; }
+  details { margin-top: 8px; color: var(--muted); }
+  details summary { cursor: pointer; }
+  .drop { font-size: 14px; padding: 3px 0; }
+  .spinner { color: var(--muted); }
+
+  #refine-panel summary { font-weight: 700; color: var(--accent); font-size: 15px; }
+  #refine-panel textarea { margin-top: 6px; }
+  #refine-list { margin: 12px 0; }
+  .refine-pick {
+    display: flex; align-items: center; gap: 10px; padding: 7px 0;
+    border-bottom: 1px solid var(--line); font-size: 14px; cursor: pointer;
+    color: var(--text); font-weight: 400; margin: 0;
+  }
+  .refine-pick:last-child { border-bottom: 0; }
+  .refine-pick input { width: auto; margin: 0; flex-shrink: 0; accent-color: var(--accent2); }
+  .refine-pick .prior { color: var(--muted); font-size: 13px; margin-left: auto; white-space: nowrap; }
+  #refine-count.over { color: var(--warn); }
+  .refine-card { border-left: 3px solid var(--accent); }
+  .arrow-score { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+  .arrow-score .now { color: var(--muted); font-size: 14px; }
+  .changes { background: #0b1220; border-radius: 9px; padding: 12px 14px; margin: 12px 0; }
+  .changes h4 { margin: 0 0 8px; font-size: 14px; color: var(--accent2); }
+  .changes ul { margin: 0; padding-left: 18px; }
+  .changes li { margin-bottom: 8px; }
+  .changes li:last-child { margin-bottom: 0; }
+  .effort {
+    display: inline-block; border-radius: 999px; padding: 1px 9px; font-size: 12px;
+    font-weight: 700; margin-right: 8px; background: #1f2937; color: var(--muted);
+  }
+  .effort-small { background: #06301c; color: #4ade80; }
+  .effort-medium { background: #33270a; color: #fbbf24; }
+  .effort-large { background: #3a1414; color: #fca5a5; }
+  .where { color: var(--muted); font-size: 13px; display: block; margin-top: 2px; }
+  .dims { color: var(--muted); font-size: 13px; margin: 8px 0 0; }
+  .q { margin-bottom: 12px; }
+  .yn { display: flex; gap: 8px; margin-top: 6px; }
+  .yn-btn {
+    padding: 8px 22px; border-radius: 8px; border: 1px solid var(--line);
+    background: #0b1220; color: var(--muted); font: inherit; font-weight: 600;
+    cursor: pointer; transition: background .15s, color .15s, border-color .15s;
+  }
+  .yn-btn.selected-jah { background: var(--accent2); color: #06210f; border-color: var(--accent2); }
+  .yn-btn.selected-ei  { background: #ef4444;        color: #fff;     border-color: #ef4444; }
+  .yn-btn.selected     { background: var(--accent);  color: #041018;  border-color: var(--accent); }
+  .yn { flex-wrap: wrap; }
+
+  .vestlus-section { margin-top: 16px; }
+  .vestlus-section:first-child { margin-top: 0; }
+  .vestlus-section > .hint { display: block; margin-bottom: 6px; }
+  .vestlus-code-row {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  #vestlus-id-display {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 18px; letter-spacing: 1.5px; font-weight: 700;
+  }
+  #vestlus-bar button { margin-top: 0; }
+  #vestlus-bar .btn-danger {
+    color: #fca5a5; border-color: #7f1d1d;
+  }
+  #vestlus-bar .btn-danger:hover { border-color: #ef4444; color: #fecaca; }
+  /* The native "No file chosen" label is only useful before any file has
+     been uploaded — once files.length > 0 the file-list below already shows
+     them, so we hide the browser's own label to avoid a stale "no file"
+     message sitting next to actual uploaded files. */
+  #file-input.has-files { color: transparent; }
+  #file-input.has-files::file-selector-button { color: var(--text); }
+  #file-input.has-files::-webkit-file-upload-button { color: var(--text); }
+  .file-item {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 14px;
+  }
+  .file-item:last-child { border-bottom: 0; }
+  .file-warn { color: var(--warn); font-size: 12px; margin-left: 8px; }
+  .file-del { margin: 0; padding: 4px 12px; font-size: 13px; }
+
+  .chat-panel {
+    position: fixed; top: 0; right: 0; width: 380px; max-width: 92vw; height: 100vh;
+    background: var(--card); border-left: 1px solid var(--line);
+    display: flex; flex-direction: column; padding: 18px; z-index: 100;
+  }
+  .chat-panel.hidden { display: none; }
+  .chat-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+  .chat-header h3 { margin: 0; font-size: 17px; }
+  .chat-close { background: transparent; color: var(--muted); border: 1px solid var(--line); border-radius: 8px; margin: 0; padding: 4px 10px; }
+  .chat-messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+  .chat-msg { padding: 10px 12px; border-radius: 10px; max-width: 92%; white-space: pre-wrap; font-size: 14px; }
+  .chat-msg.user { align-self: flex-end; background: var(--accent); color: #041018; }
+  .chat-msg.assistant { align-self: flex-start; background: #0b1220; border: 1px solid var(--line); }
+  .chat-input-row { display: flex; gap: 8px; }
+  .chat-input-row textarea { min-height: 56px; margin: 0; }
+  .chat-input-row button { margin: 0; padding: 10px 16px; }
+  .chat-clear { margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<div id="login-overlay">
+  <div class="card">
+    <h2>AI Rahastusnõustaja</h2>
+    <p class="sub">Testimiseks on vaja isiklikku koodi.</p>
+    <label for="login-code">Sinu kood</label>
+    <input id="login-code" autocomplete="one-time-code" spellcheck="false"
+           placeholder="NÄITEKS ABCDEFGHJK" maxlength="20">
+    <p id="login-error"></p>
+    <div class="actions" style="margin-top:16px">
+      <button type="button" id="btn-login">Logi sisse</button>
+    </div>
+    <p class="consent">
+      Testimise ajal salvestatakse kõik tegevused: sinu päringud, üleslaetud failide
+      sisu ning keelemudelile saadetud ja sealt saadud tekst. Neid kasutatakse ainult
+      rakenduse arendamiseks ja vigade uurimiseks. Andmed kustutatakse
+      <strong>90 päeva</strong> pärast. Palun ära laadi üles dokumente, mida sa ei
+      tohi jagada.
+    </p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="logout-row">
+    <button type="button" class="ghost" id="btn-logout" style="display:none">Logi välja</button>
+  </div>
+  <h1>AI Rahastusnõustaja</h1>
+  <p class="sub">Leia projektile sobivad Eesti innovatsioonirahastuse meetmed.</p>
+
+  <!-- Vestlus (project) identity: code, save, resume, delete. Shown on the intake
+       form and on the results, hidden while the clarifying questions are open. -->
+  <div class="card" id="vestlus-bar">
+    <div class="vestlus-section">
+      <span class="hint" id="vestlus-code-hint">Sinu vestluse kood</span>
+      <div class="vestlus-code-row">
+        <span id="vestlus-id-display">—</span>
+        <button type="button" class="ghost" id="btn-copy-id">Kopeeri kood</button>
+        <button type="button" id="btn-save-vestlus">Salvesta vestlus</button>
+      </div>
+    </div>
+    <div class="vestlus-section" id="saved-section" style="display: none;">
+      <span class="hint">Minu salvestatud vestlused</span>
+      <div class="row" style="margin-top: 0;">
+        <select id="saved-select" style="flex: 1; min-width: 200px;"></select>
+        <button type="button" id="btn-open-saved">Ava</button>
+      </div>
+    </div>
+    <div class="vestlus-section">
+      <span class="hint">Jätka koodiga (ka siis, kui keegi jagas sulle oma koodi)</span>
+      <div class="row" style="margin-top: 0;">
+        <input id="resume-input" placeholder="Kleebi vestluse kood" style="flex: 1; min-width: 200px;" />
+        <button type="button" id="btn-resume">Jätka</button>
+      </div>
+    </div>
+    <div class="vestlus-section">
+      <button type="button" class="ghost btn-danger" id="btn-delete-vestlus">Kustuta vestlus</button>
+    </div>
+  </div>
+
+  <!-- STEP 1: intake form -->
+  <div id="step1" class="card">
+    <label>Taotleja tüüp</label>
+    <select id="applicant_type">
+      <option value="ettevote">OÜ</option>
+      <option value="mtu">MTÜ</option>
+      <option value="sa">SA</option>
+      <option value="konsortsium">Konsortsium</option>
+    </select>
+
+    <label>Ettevõtte suurus</label>
+    <select id="company_size">
+      <option value="mikro">Mikroettevõte</option>
+      <option value="VKE">Väike- või keskmise suurusega (VKE)</option>
+      <option value="suur">Suurettevõte</option>
+    </select>
+
+    <label>Piirkond</label>
+    <select id="region">
+      <option value="">— vali maakond —</option>
+      <option value="Harju maakond">Harju maakond</option>
+      <option value="Hiiu maakond">Hiiu maakond</option>
+      <option value="Ida-Viru maakond">Ida-Viru maakond</option>
+      <option value="Jõgeva maakond">Jõgeva maakond</option>
+      <option value="Järva maakond">Järva maakond</option>
+      <option value="Lääne maakond">Lääne maakond</option>
+      <option value="Lääne-Viru maakond">Lääne-Viru maakond</option>
+      <option value="Põlva maakond">Põlva maakond</option>
+      <option value="Pärnu maakond">Pärnu maakond</option>
+      <option value="Rapla maakond">Rapla maakond</option>
+      <option value="Saare maakond">Saare maakond</option>
+      <option value="Tartu maakond">Tartu maakond</option>
+      <option value="Valga maakond">Valga maakond</option>
+      <option value="Viljandi maakond">Viljandi maakond</option>
+      <option value="Võru maakond">Võru maakond</option>
+    </select>
+
+    <label>Kas ettevõtte tegevusala on ühes järgnevatest valdkondadest? <span class="req">*</span></label>
+    <p class="hint sector-list" id="sector-list"></p>
+    <div class="yn" id="sector-yn">
+      <button type="button" class="yn-btn" data-val="Jah" onclick="selectYN(this)">Jah</button>
+      <button type="button" class="yn-btn" data-val="Ei" onclick="selectYN(this)">Ei</button>
+    </div>
+
+    <label>Kas oled varem rahastusmeetmeid taotlenud? <span class="hint">(valikuline, hoia Ctrl/Cmd all mitme valimiseks)</span></label>
+    <select id="previously-applied" multiple></select>
+
+    <label>Ettevõtte failid <span class="hint">(valikuline, kuni 10 MB: txt, md, pdf, docx, csv, xlsx)</span></label>
+    <input type="file" id="file-input" multiple />
+    <p class="hint" id="file-locked-hint" style="margin: 6px 0 0;"></p>
+    <div id="file-list"></div>
+
+    <label>Taotletav toetuse summa <span class="hint">(valikuline, nt 49 500 € — summa, mida soovite meetmelt toetusena taotleda)</span></label>
+    <input id="requested_grant" placeholder="49 500 €" />
+
+    <label>Projekti kirjeldus <span class="req">*</span></label>
+    <textarea id="project_description" placeholder="Kirjelda projekti sisu, eesmärki, osapooli ja mahtu..."></textarea>
+
+    <button id="btn-search">Otsi sobivaid meetmeid</button>
+  </div>
+
+  <!-- STEP 2: clarifying questions -->
+  <div id="step2" class="card hidden">
+    <h3 id="cand-count"></h3>
+    <p class="sub">Vasta täpsustavatele küsimustele (valikuline) või jäta vahele.</p>
+    <div id="questions"></div>
+    <div class="row">
+      <button id="btn-rank">Koosta soovitused</button>
+      <button id="btn-skip" class="ghost">Jäta vahele</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: results -->
+  <div id="step3" class="hidden">
+    <p id="download-hint" class="sub hidden">Märgi linnukesega, millised soovitused kokkuvõttesse kaasata.</p>
+    <div id="results"></div>
+
+    <!-- Second pass: what would have to change for the other measures to fit. -->
+    <div id="refine-panel" class="card hidden">
+      <details>
+        <summary>Täiendav analüüs — mida muuta, et rohkem meetmeid sobiks</summary>
+        <p class="hint">
+          Vali meetmed, mille kohta soovid teada, mida oleks vaja projektis või
+          taotluses muuta. Ettevõtte andmed (tüüp, suurus, piirkond, tegevusala,
+          eelarve) jäävad muutmata — muuta saab projekti eesmärki, tüüpi ja sisu.
+        </p>
+        <p id="refine-nofiles" class="hint hidden">
+          Faile pole üles laaditud, seega põhinevad soovitused ainult projekti kirjeldusel.
+        </p>
+        <div id="refine-list"></div>
+        <label for="refine-willing">Mida olete valmis projektis muutma? (valikuline)</label>
+        <textarea id="refine-willing" rows="3"
+                  placeholder="Nt: partnerit ei soovi kaasata, aga T&amp;A osakaalu saab suurendada."></textarea>
+        <div class="row">
+          <button id="btn-refine">Koosta täiendav raport</button>
+          <span id="refine-count" class="hint"></span>
+        </div>
+      </details>
+    </div>
+    <div id="refine-results"></div>
+
+    <div id="dropped"></div>
+    <div class="row">
+      <button id="btn-download">Laadi alla kokkuvõte (.md)</button>
+      <button id="btn-restart" class="ghost">Alusta uut vestlust</button>
+    </div>
+  </div>
+
+  <div id="status" class="card hidden"><span class="spinner">Töötan...</span></div>
+</div>
+
+<!-- Measure chat side panel -->
+<div id="chat-panel" class="chat-panel hidden">
+  <div class="chat-header">
+    <h3 id="chat-title"></h3>
+    <button type="button" class="chat-close" id="btn-chat-close">Sulge</button>
+  </div>
+  <div id="chat-messages" class="chat-messages"></div>
+  <div class="chat-input-row">
+    <textarea id="chat-input" placeholder="Küsi lisainfot selle meetme kohta..."></textarea>
+    <button type="button" id="btn-chat-send">Saada</button>
+  </div>
+  <button type="button" class="ghost chat-clear" id="btn-chat-clear">Tühjenda ajalugu</button>
+</div>
+
+<script>
+const SECTORS = [
+  "Põllumajandus, metsandus, kalapüük",
+  "Kala/mereandide töötlemine",
+  "Hulgi- või jaekaubandus",
+  "Kinnisvaraalane tegevus",
+  "Tubakatoodete tootmine",
+  "Hasartmängud ja kihlveod",
+  "Juriidilised toimingud, arvepidamine",
+  "Peakontorid, juhtimisnõustamine",
+  "Reklaamindus, turu-uuringud",
+  "Rentimine ja kasutusrent",
+  "Tööjõurent",
+  "Kaevandamine, nafta/maagaas",
+];
+
+let currentIntake = null;
+let currentQuestions = [];
+let lastResults = null;
+let lastRefinement = null;
+let hasUploadedFiles = false;
+let vestluseId = null;
+let vestlusSaved = false;
+let vestlusOwned = true;
+let uploadLocked = false;
+let currentThreadId = null;
+let currentChatTitle = "";
+
+const VESTLUS_KEY = "funding_vestluse_id";
+
+const $ = (id) => document.getElementById(id);
+const show = (id) => {
+  $(id).classList.remove("hidden");
+  syncVestlusBar();
+};
+const hide = (id) => {
+  $(id).classList.add("hidden");
+  syncVestlusBar();
+};
+
+/** The vestlus bar (code, save, saved list) belongs to step 1 AND step 3.
+ *
+ * It used to follow step 1 alone, which hid it exactly when it was needed:
+ * you only know a vestlus is worth keeping once you are looking at its
+ * results, and by then the Salvesta button was gone with the form.
+ */
+function syncVestlusBar() {
+  const onStep = ["step1", "step3"].some((s) => !$(s).classList.contains("hidden"));
+  $("vestlus-bar").classList.toggle("hidden", !onStep);
+}
+
+$("sector-list").textContent = SECTORS.join("; ") + ".";
+
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+}
+
+function setVestlusDisplay(id, saved) {
+  vestluseId = id;
+  $("vestlus-id-display").textContent = id || "—";
+  vestlusSaved = !!saved;
+  $("btn-save-vestlus").textContent = saved ? "Nimeta ümber" : "Salvesta vestlus";
+  $("btn-save-vestlus").disabled = !id;
+  $("vestlus-code-hint").textContent = id
+    ? (saved ? "Salvestatud. Koodi jagades saab teine testija seda vaadata."
+             : "Vestlus on salvestamata — salvesta, et see alles jääks.")
+    : "Vestlus luuakse siis, kui laed faili üles või küsid soovitust.";
+  if (id) localStorage.setItem(VESTLUS_KEY, id);
+  else localStorage.removeItem(VESTLUS_KEY);
+}
+
+async function createVestlus() {
+  const res = await fetch("/vestlused", { method: "POST" });
+  if (!res.ok) throw new Error("Vestluse loomine ebaõnnestus (" + res.status + ")");
+  const data = await res.json();
+  setVestlusDisplay(data.vestluse_id, false);
+  uploadLocked = false;
+  setFileLockUI();
+  return data.vestluse_id;
+}
+
+// The only place a vestlus is created. Called from the file upload and the
+// /recommend handler, so opening the app and walking away leaves nothing behind.
+async function ensureVestlus() {
+  if (vestluseId) return vestluseId;
+  return createVestlus();
+}
+
+/** Load an existing vestlus by code into the UI. Returns false if unavailable. */
+async function openVestlus(code) {
+  const res = await fetch("/vestlused/" + encodeURIComponent(code));
+  if (!res.ok) return res.status;
+  const data = await res.json();
+
+  setVestlusDisplay(data.vestluse_id, data.saved);
+  vestlusOwned = data.owned !== false;
+  currentIntake = data.intake || {};
+  applyIntake(currentIntake);
+  uploadLocked = !!data.recommendation;
+  setFileLockUI();
+  renderFileList(data.files || []);
+  // A vestlus opened with someone else's code is read-only: the API rejects
+  // every write on it, so the buttons that would try are hidden rather than
+  // left to fail with a 403.
+  $("btn-delete-vestlus").style.display = vestlusOwned ? "" : "none";
+  $("btn-save-vestlus").style.display = vestlusOwned ? "" : "none";
+  // The second pass is a write too, so a shared reader gets the report to read
+  // but not the button that would run another one.
+  $("btn-refine").disabled = !vestlusOwned;
+
+  if (data.recommendation) {
+    renderResults(data.recommendation);
+    renderRefineResults(data.refinement);
+    hide("step1"); hide("step2"); show("step3");
+  } else {
+    hide("step3"); hide("step2"); show("step1");
+  }
+  return true;
+}
+
+/** Refresh the "my saved vestlused" picker; hidden when there is nothing in it. */
+async function loadSavedVestlused() {
+  let items = [];
+  try {
+    const res = await fetch("/vestlused");
+    if (res.ok) items = (await res.json()).vestlused || [];
+  } catch (err) {
+    console.error(err);
+  }
+  const select = $("saved-select");
+  select.innerHTML = "";
+  for (const v of items) {
+    const option = document.createElement("option");
+    option.value = v.vestluse_id;
+    const when = (v.updated_at || "").slice(0, 10);
+    option.textContent = `${v.title || v.vestluse_id} · ${when}` +
+      (v.has_recommendation ? " · soovitus olemas" : "");
+    select.appendChild(option);
+  }
+  $("saved-section").style.display = items.length ? "" : "none";
+}
+
+function setFileLockUI() {
+  $("file-input").disabled = uploadLocked;
+  $("file-locked-hint").textContent = uploadLocked
+    ? "Failid on lukustatud pärast soovitust. Uue konteksti jaoks loo uus vestlus."
+    : "";
+}
+
+async function loadMeasureNames() {
+  const box = $("previously-applied");
+  try {
+    const res = await fetch("/measures");
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    const names = data.measures || [];
+    if (names.length === 0) {
+      box.innerHTML = `<p class="hint">Meetmete nimekiri on tühi.</p>`;
+      return;
+    }
+    box.innerHTML = names.map(
+      (name) => `<option value="${esc(name)}">${esc(name)}</option>`
+    ).join("");
+  } catch (err) {
+    console.error("loadMeasureNames failed:", err);
+    box.innerHTML = `<p class="hint">Meetmete nimekirja laadimine ebaõnnestus. Värskenda lehte.</p>`;
+  }
+}
+
+function applyPreviouslyApplied(names) {
+  const wanted = new Set(names || []);
+  document.querySelectorAll("#previously-applied option").forEach((el) => {
+    el.selected = wanted.has(el.value);
+  });
+}
+
+function applyIntake(intake) {
+  if (!intake) return;
+  if (intake.applicant_type) $("applicant_type").value = intake.applicant_type;
+  if (intake.company_size) $("company_size").value = intake.company_size;
+  if (intake.region != null) $("region").value = intake.region;
+  if (intake.requested_grant != null) $("requested_grant").value = intake.requested_grant;
+  if (intake.project_description != null) $("project_description").value = intake.project_description;
+  applyPreviouslyApplied(intake.previously_applied);
+  // Restore Jah/Ei for excluded sector.
+  const yn = intake.excluded_sector_activity;
+  if (yn === "Jah" || yn === "Ei") {
+    document.querySelectorAll("#sector-yn .yn-btn").forEach((b) => {
+      b.classList.remove("selected-jah", "selected-ei");
+      if (b.dataset.val === yn) b.classList.add(yn === "Jah" ? "selected-jah" : "selected-ei");
+    });
+  }
+}
+
+function renderFileList(fileRows) {
+  const box = $("file-list");
+  hasUploadedFiles = !!(fileRows && fileRows.length > 0);
+  $("file-input").classList.toggle("has-files", hasUploadedFiles);
+  if (!fileRows || fileRows.length === 0) {
+    box.innerHTML = "";
+    return;
+  }
+  box.innerHTML = fileRows.map((f) => {
+    const warn = f.status === "extract_failed"
+      ? `<span class="file-warn">teksti ei õnnestunud lugeda — soovitus jätkub ilma selle failita</span>`
+      : "";
+    const del = uploadLocked
+      ? ""
+      : `<button type="button" class="ghost file-del" data-id="${f.id}">Eemalda</button>`;
+    return `<div class="file-item"><span>${esc(f.name)}${warn}</span>${del}</div>`;
+  }).join("");
+  box.querySelectorAll(".file-del").forEach((btn) => {
+    btn.onclick = () => deleteFile(Number(btn.dataset.id));
+  });
+}
+
+async function refreshFiles() {
+  if (!vestluseId) return;
+  const res = await fetch("/vestlused/" + encodeURIComponent(vestluseId));
+  if (!res.ok) return;
+  const data = await res.json();
+  renderFileList(data.files || []);
+}
+
+async function deleteFile(fileId) {
+  if (!vestluseId || uploadLocked) return;
+  const res = await fetch(`/vestlused/${encodeURIComponent(vestluseId)}/files/${fileId}`, { method: "DELETE" });
+  if (!res.ok) {
+    alert("Faili kustutamine ebaõnnestus (" + res.status + ")");
+    return;
+  }
+  await refreshFiles();
+}
+
+$("file-input").onchange = async () => {
+  const input = $("file-input");
+  const selected = [...input.files];
+  input.value = "";
+  if (selected.length === 0) return;
+  if (uploadLocked) {
+    alert("Failid on lukustatud pärast soovitust.");
+    return;
+  }
+  try {
+    await ensureVestlus();
+  } catch (err) {
+    alert(err.message);
+    return;
+  }
+  for (const file of selected) {
+    const form = new FormData();
+    form.append("file", file);
+    const res = await fetch(`/vestlused/${encodeURIComponent(vestluseId)}/files`, {
+      method: "POST",
+      body: form,
+    });
+    if (res.status === 413) {
+      alert(`Fail ${file.name} on liiga suur (max 10 MB).`);
+      continue;
+    }
+    if (res.status === 400) {
+      alert(`Failitüüp pole lubatud: ${file.name}`);
+      continue;
+    }
+    if (!res.ok) {
+      alert(`Üleslaadimine ebaõnnestus (${file.name}): ${res.status}`);
+      continue;
+    }
+  }
+  await refreshFiles();
+};
+
+function readSectorAnswer() {
+  const selected = document.querySelector("#sector-yn .yn-btn.selected-jah, #sector-yn .yn-btn.selected-ei");
+  return selected ? selected.dataset.val : null;
+}
+
+function readPreviouslyApplied() {
+  return [...$("previously-applied").selectedOptions].map((el) => el.value);
+}
+
+function readIntake() {
+  return {
+    applicant_type: $("applicant_type").value,
+    company_size: $("company_size").value,
+    region: $("region").value.trim(),
+    excluded_sector_activity: readSectorAnswer(),
+    excluded_sectors: [],
+    previously_applied: readPreviouslyApplied(),
+    requested_grant: $("requested_grant").value.trim(),
+    project_description: $("project_description").value.trim(),
+  };
+}
+
+function showExcludedSectorResult() {
+  lastResults = { ranked_cards: [], dropped: [], excluded_sector: true };
+  $("results").innerHTML = `<div class="card">Teie ettevõtte tegevusala kuulub välistatud valdkondade hulka. EISi innovatsioonirahastuse meetmed ei ole teile sobivad.</div>`;
+  $("dropped").innerHTML = "";
+  $("refine-results").innerHTML = "";
+  hide("refine-panel");
+  hide("download-hint");
+  hide("step1"); hide("step2"); show("step3");
+}
+
+/** Readable text from a failed response, whatever shape its body is.
+ *
+ * FastAPI's `detail` is a string for our own HTTPExceptions but a LIST of
+ * objects for a 422 validation error, and concatenating that into a message
+ * printed "[object Object]" instead of telling the user anything.
+ */
+async function serverMessage(res) {
+  const body = await res.json().catch(() => null);
+  const detail = body && body.detail;
+  if (typeof detail === "string" && detail) return detail;
+  if (Array.isArray(detail)) {
+    const parts = detail
+      .map((d) => (typeof d === "string" ? d : d && d.msg))
+      .filter(Boolean);
+    if (parts.length) return parts.join("; ");
+  }
+  return "server error " + res.status;
+}
+
+async function postRecommend(body) {
+  show("status");
+  try {
+    const res = await fetch("/recommend", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    if (res.status === 409) {
+      throw new Error("Sellel vestlusel on soovitus juba lukustatud. Alusta uut vestlust.");
+    }
+    if (!res.ok) throw new Error("Server error " + res.status);
+    return await res.json();
+  } finally {
+    hide("status");
+  }
+}
+
+// STEP 1 -> search: first call, clarifications omitted (null on the server).
+$("btn-search").onclick = async () => {
+  currentIntake = readIntake();
+  if (!currentIntake.project_description) {
+    alert("Palun kirjelda projekti.");
+    return;
+  }
+  if (!currentIntake.excluded_sector_activity) {
+    alert("Palun vasta tegevusalade küsimusele.");
+    return;
+  }
+  if (currentIntake.excluded_sector_activity === "Jah") {
+    showExcludedSectorResult();
+    return;
+  }
+  try {
+    await ensureVestlus();
+  } catch (err) {
+    alert(err.message);
+    return;
+  }
+  let data;
+  try {
+    data = await postRecommend({ vestluse_id: vestluseId, intake: currentIntake });
+  } catch (err) {
+    alert(err.message);
+    return;
+  }
+  currentQuestions = data.questions || [];
+  $("cand-count").textContent = `Leidsin ${data.candidates.length} võimalikku meedet.`;
+
+  if (currentQuestions.length === 0) {
+    await runRanking({});
+    return;
+  }
+  $("questions").innerHTML = currentQuestions.map((q, i) => {
+    const buttons = q.options && q.options.length
+      ? q.options.map(
+          (opt) => `<button type="button" class="yn-btn" data-q="${i}" data-val="${esc(opt)}" onclick="selectChoice(this)">${esc(opt)}</button>`
+        ).join("")
+      : `<button type="button" class="yn-btn" data-q="${i}" data-val="Jah" onclick="selectYN(this)">Jah</button>
+         <button type="button" class="yn-btn" data-q="${i}" data-val="Ei"  onclick="selectYN(this)">Ei</button>`;
+    return `<div class="q">
+      <label>${esc(q.text)}</label>
+      <div class="yn">${buttons}</div>
+    </div>`;
+  }).join("");
+  hide("step1"); show("step2");
+};
+
+function selectYN(btn) {
+  const cls = btn.dataset.val === "Jah" ? "selected-jah" : "selected-ei";
+  if (btn.classList.contains(cls)) {
+    btn.classList.remove("selected-jah", "selected-ei");
+    return;
+  }
+  const siblings = btn.closest(".yn").querySelectorAll(".yn-btn");
+  siblings.forEach((b) => b.classList.remove("selected-jah", "selected-ei"));
+  btn.classList.add(cls);
+}
+
+// Single-select among an arbitrary list of choice buttons (e.g. development phase).
+function selectChoice(btn) {
+  const already = btn.classList.contains("selected");
+  const siblings = btn.closest(".yn").querySelectorAll(".yn-btn");
+  siblings.forEach((b) => b.classList.remove("selected"));
+  if (!already) btn.classList.add("selected");
+}
+
+function readClarifications() {
+  const answers = {};
+  document.querySelectorAll("#questions .yn-btn.selected-jah, #questions .yn-btn.selected-ei, #questions .yn-btn.selected").forEach((btn) => {
+    answers[currentQuestions[btn.dataset.q].text] = btn.dataset.val;
+  });
+  return answers;
+}
+
+$("btn-rank").onclick = () => runRanking(readClarifications());
+$("btn-skip").onclick = () => runRanking({});
+
+async function runRanking(clarifications) {
+  let data;
+  try {
+    data = await postRecommend({ vestluse_id: vestluseId, intake: currentIntake, clarifications });
+  } catch (err) {
+    alert(err.message);
+    return;
+  }
+  uploadLocked = true;
+  setFileLockUI();
+  await refreshFiles();
+  renderResults(data);
+  hide("step1"); hide("step2"); show("step3");
+}
+
+function renderResults(data) {
+  lastResults = data;
+  const cards = data.ranked_cards || [];
+  if (cards.length === 0) {
+    $("results").innerHTML = `<div class="card">Sobivaid meetmeid ei leitud.</div>`;
+    hide("download-hint");
+  } else {
+    $("results").innerHTML = cards.map((c, i) => renderCard(c, i)).join("");
+    show("download-hint");
+  }
+  const dropped = data.dropped || [];
+  $("dropped").innerHTML = dropped.length === 0 ? "" : `
+    <div class="card"><details>
+      <summary>Välja filtreeritud meetmed (${dropped.length})</summary>
+      ${dropped.map((d) => `<div class="drop">• <b>${esc(d.name)}</b> — ${esc(d.reason)}</div>`).join("")}
+    </details></div>`;
+  renderRefineList();
+}
+
+function readSelectedCards() {
+  const cards = lastResults?.ranked_cards || [];
+  const selected = new Set(
+    [...document.querySelectorAll(".pick-cb:checked")].map((el) => Number(el.dataset.idx))
+  );
+  return cards.filter((_, i) => selected.has(i));
+}
+
+// --- Täiendav analüüs: second pass over measures the user picks --------------
+
+const REFINE_BATCH_SIZE = 3;  // must match refine.BATCH_SIZE on the server
+const EFFORT_CLASS = { "väike": "effort-small", "keskmine": "effort-medium", "suur": "effort-large" };
+
+function renderRefineList() {
+  // Every hard-filter survivor is eligible, including the ones already at the
+  // top of the report. Dropped measures are not: they failed on a company fact
+  // no rewrite can change, so the server would reject them anyway.
+  const names = lastResults?.candidates || [];
+  if (names.length === 0) {
+    hide("refine-panel");
+    return;
+  }
+  $("refine-nofiles").classList.toggle("hidden", hasUploadedFiles);
+  const scoreByName = {};
+  (lastResults?.ranked_cards || []).forEach((c) => { scoreByName[c.name] = c.score; });
+
+  $("refine-list").innerHTML = names.map((name) => {
+    const score = scoreByName[name];
+    const prior = score == null
+      ? `<span class="prior">esimeses raportis puudub</span>`
+      : `<span class="prior">praegu ${score}/5</span>`;
+    return `<label class="refine-pick">
+      <input type="checkbox" class="refine-cb" value="${esc(name)}" />
+      <span>${esc(name)}</span>${prior}
+    </label>`;
+  }).join("");
+
+  $("refine-list").querySelectorAll(".refine-cb").forEach((cb) => {
+    cb.onchange = updateRefineCount;
+  });
+  updateRefineCount();
+  show("refine-panel");
+}
+
+function readRefineSelection() {
+  return [...document.querySelectorAll(".refine-cb:checked")].map((el) => el.value);
+}
+
+function updateRefineCount() {
+  const n = readRefineSelection().length;
+  const el = $("refine-count");
+  if (n === 0) {
+    el.textContent = "Ühtegi meedet pole valitud.";
+    el.classList.remove("over");
+    return;
+  }
+  // The server sends measures to the model in batches, so the wait grows in
+  // steps of a batch, not per measure.
+  const minutes = Math.max(1, Math.round(Math.ceil(n / REFINE_BATCH_SIZE) * 0.5));
+  el.textContent = `Valitud ${n} meedet · analüüs võtab u ${minutes} min.`;
+  el.classList.toggle("over", n > 9);
+}
+
+function renderRefineChanges(changes) {
+  if (!changes || changes.length === 0) return "";
+  const items = changes.map((c) => {
+    const cls = EFFORT_CLASS[c.effort] || "effort-medium";
+    const where = c.where ? `<span class="where">Kus: ${esc(c.where)}</span>` : "";
+    return `<li><span class="effort ${cls}">${esc(c.effort)}</span>${esc(c.text)}${where}</li>`;
+  }).join("");
+  return `<div class="changes"><h4>Vajalikud muudatused</h4><ul>${items}</ul></div>`;
+}
+
+const DIMENSION_LABELS = {
+  rnd: "rakendusuuring või tootearendus",
+  ai: "tehisintellekti komponent",
+  partner: "partner või konsortsium",
+  university: "ülikool või teadusasutus",
+};
+
+function renderRefineCard(c, idx) {
+  const status = c.status_warning
+    ? `<span class="badge-warn">${esc(c.status)}</span>`
+    : esc(c.status);
+  const links = (c.link ? [c.link] : []).concat(c.links || [])
+    .map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a>`).join("");
+  const chatBtn = c.measure_id
+    ? `<button type="button" class="ghost" data-measure-id="${esc(c.measure_id)}" data-measure-name="${esc(c.name)}" onclick="openMeasureChat(this)">Küsi lisainfot</button>`
+    : "";
+  const dims = (c.proposed_answers || []).map((d) => DIMENSION_LABELS[d] || d);
+  const dimsBlock = dims.length
+    ? `<p class="dims">Muudatused eeldavad: ${esc(dims.join(", "))}.</p>`
+    : "";
+  return `<div class="card refine-card">
+    <div class="result-head">
+      <label class="pick">
+        <input type="checkbox" class="refine-pick-cb" data-idx="${idx}" checked />
+        <h3 class="pick-title">${esc(c.name)}</h3>
+      </label>
+      <span class="arrow-score">
+        <span class="now">Praegu ${c.current_score ?? "?"}/5</span>
+        <span class="score">Muudatustega ${c.projected_score ?? "?"}/5</span>
+      </span>
+    </div>
+    <div class="meta">${esc(c.funder)} · Toetus: ${esc(c.max_grant)} · Omafinantseering: ${esc(c.cofinancing)} · Staatus: ${status}</div>
+    ${renderGrantWarning(c)}
+    ${renderGrantInfo(c)}
+    <p>${esc(c.summary)}</p>
+    ${renderSourceStatus(c.source_status)}
+    ${renderRefineChanges(c.changes)}
+    ${dimsBlock}
+    <div class="links">${links}</div>
+    ${chatBtn}
+  </div>`;
+}
+
+// The code-computed amount verdict, in two severities. grant_warning is a real
+// obstacle (below the measure's minimum) and stays red; grant_info only means the
+// measure pays less than asked, so it reuses the neutral .meta grey — colouring
+// that red would leave half the list looking broken. Recommendations saved before
+// these keys existed have neither, so both must render nothing.
+function renderGrantWarning(c) {
+  return c.grant_warning ? `<p class="badge-warn">${esc(c.grant_warning)}</p>` : "";
+}
+
+function renderGrantInfo(c) {
+  return c.grant_info ? `<p class="meta">${esc(c.grant_info)}</p>` : "";
+}
+
+function renderRefineResults(refinement) {
+  lastRefinement = refinement;
+  const cards = refinement?.cards || [];
+  const failed = refinement?.failed || [];
+  if (cards.length === 0 && failed.length === 0) {
+    $("refine-results").innerHTML = "";
+    return;
+  }
+  if (refinement.willing_to_change) $("refine-willing").value = refinement.willing_to_change;
+  const failedBlock = failed.length === 0 ? "" : `
+    <div class="card">
+      <p class="badge-warn">Neid meetmeid ei õnnestunud analüüsida: ${esc(failed.join(", "))}</p>
+      <button type="button" class="ghost" id="btn-refine-retry">Proovi uuesti</button>
+    </div>`;
+  $("refine-results").innerHTML =
+    `<h2>Täiendav analüüs (${cards.length})</h2>` +
+    cards.map((c, i) => renderRefineCard(c, i)).join("") +
+    failedBlock;
+
+  const retry = $("btn-refine-retry");
+  if (retry) retry.onclick = () => runRefine(failed);
+}
+
+async function runRefine(names) {
+  const willing = $("refine-willing").value.trim();
+  show("status");
+  try {
+    const res = await fetch(`/vestlused/${encodeURIComponent(vestluseId)}/refine`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ measure_names: names, willing_to_change: willing }),
+    });
+    if (res.status === 429) {
+      alert("Liiga palju analüüse järjest. Oota hetk ja proovi uuesti.");
+      return;
+    }
+    if (!res.ok) {
+      alert("Analüüs ebaõnnestus: " + await serverMessage(res));
+      return;
+    }
+    const data = await res.json();
+    renderRefineResults({ ...data, willing_to_change: willing });
+    $("refine-results").scrollIntoView({ behavior: "smooth", block: "start" });
+  } finally {
+    hide("status");
+  }
+}
+
+$("btn-refine").onclick = () => {
+  const names = readRefineSelection();
+  if (names.length === 0) {
+    alert("Vali vähemalt üks meede.");
+    return;
+  }
+  runRefine(names);
+};
+
+function buildMarkdown(data, intake, cards) {
+  const date = new Date().toLocaleDateString("et-EE");
+  const dropped = data.dropped || [];
+
+  const projectBlock = intake ? [
+    `## Projekti andmed`,
+    `- **Taotleja:** ${intake.applicant_type} · ${intake.company_size}`,
+    intake.region ? `- **Piirkond:** ${intake.region}` : "",
+    intake.requested_grant ? `- **Taotletav toetus:** ${intake.requested_grant}` : "",
+    // Vormist eemaldatud väljad. Vanade vestluste intake sisaldab neid endiselt,
+    // ja nende raportid peavad edasi renderduma.
+    intake.project_cost ? `- **Projekti kogumaksumus:** ${intake.project_cost}` : "",
+    intake.budget_range ? `- **Eelarve:** ${intake.budget_range}` : "",
+    intake.cofinancing_amount ? `- **Omafinantseering:** ${intake.cofinancing_amount}` : "",
+    ``,
+    `> ${intake.project_description || "—"}`,
+  ].filter((l) => l !== "").join("\n") : "";
+
+  const cardBlock = cards.map((c, i) => {
+    const links = (c.link ? [c.link] : []).concat(c.links || []).map((u) => `- ${u}`).join("\n");
+    const checks = (c.checks || []).map((x) => `- ${x}`).join("\n");
+    const recommendation = (c.recommendation || []).map((x) => `- ${x}`).join("\n");
+    return [
+      `### ${i + 1}. ${c.name}  ·  Sobivus ${c.score ?? "?"}/5`,
+      `**Rahastaja:** ${c.funder}  |  **Toetus:** ${c.max_grant}  |  **Omafinantseering:** ${c.cofinancing}  |  **Staatus:** ${c.status}`,
+      ``,
+      c.grant_warning ? `> ⚠ ${c.grant_warning}\n` : "",
+      c.grant_info ? `> ${c.grant_info}\n` : "",
+      c.explanation || "",
+      checks ? `\n**Kontrolli enne taotlemist:**\n${checks}` : "",
+      recommendation ? `\n**Soovitus:**\n${recommendation}` : "",
+      links ? `\n${links}` : "",
+    ].filter(Boolean).join("\n");
+  }).join("\n\n");
+
+  const droppedBlock = dropped.length
+    ? `## Välja filtreeritud meetmed\n` + dropped.map((d) => `- **${d.name}** — ${d.reason}`).join("\n")
+    : "";
+
+  return [
+    `# Rahastusnõustaja kokkuvõte · ${date}`,
+    vestluseId ? `Vestluse kood: \`${vestluseId}\`` : "",
+    projectBlock,
+    `## Soovituslikud rahastusmeetmed (${cards.length})`,
+    cardBlock,
+    buildRefineMarkdown(readSelectedRefineCards()),
+    droppedBlock,
+  ].filter(Boolean).join("\n\n");
+}
+
+function readSelectedRefineCards() {
+  const cards = lastRefinement?.cards || [];
+  const selected = new Set(
+    [...document.querySelectorAll(".refine-pick-cb:checked")].map((el) => Number(el.dataset.idx))
+  );
+  return cards.filter((_, i) => selected.has(i));
+}
+
+function buildRefineMarkdown(cards) {
+  if (cards.length === 0) return "";
+  const blocks = cards.map((c, i) => {
+    const changes = (c.changes || [])
+      .map((x) => `- [${x.effort}] ${x.text}${x.where ? ` _(kus: ${x.where})_` : ""}`)
+      .join("\n");
+    const links = (c.link ? [c.link] : []).concat(c.links || []).map((u) => `- ${u}`).join("\n");
+    return [
+      `### ${i + 1}. ${c.name}  ·  Praegu ${c.current_score ?? "?"}/5 → muudatustega ${c.projected_score ?? "?"}/5`,
+      `**Rahastaja:** ${c.funder}  |  **Toetus:** ${c.max_grant}  |  **Omafinantseering:** ${c.cofinancing}  |  **Staatus:** ${c.status}`,
+      ``,
+      c.grant_warning ? `> ⚠ ${c.grant_warning}\n` : "",
+      c.grant_info ? `> ${c.grant_info}\n` : "",
+      c.summary || "",
+      changes ? `\n**Vajalikud muudatused:**\n${changes}` : "",
+      links ? `\n${links}` : "",
+    ].filter(Boolean).join("\n");
+  }).join("\n\n");
+
+  const willing = lastRefinement?.willing_to_change;
+  return [
+    `## Täiendav analüüs · vajalikud muudatused (${cards.length})`,
+    willing ? `> Taotleja on valmis muutma: ${willing}` : "",
+    blocks,
+  ].filter(Boolean).join("\n\n");
+}
+
+$("btn-download").onclick = () => {
+  if (!lastResults) return;
+  const selected = readSelectedCards();
+  if (selected.length === 0 && readSelectedRefineCards().length === 0) {
+    alert("Palun vali vähemalt üks soovitus alla laadimiseks.");
+    return;
+  }
+  const md = buildMarkdown(lastResults, currentIntake, selected);
+  const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `rahastusmeetmed_${new Date().toISOString().slice(0, 10)}.md`;
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+const FIT_FIELD_LABELS = {
+  project_type_fit: "Projekti tüüp",
+  field_fit: "Valdkond",
+  purpose_fit: "Eesmärk",
+};
+const FIT_VALUE_LABELS = {
+  yes: "sobib",
+  partial: "sobib osaliselt",
+  no: "ei sobi",
+  unknown: "ei ole teada",
+};
+
+function renderFitExplain(c) {
+  if (!c.fit) {
+    return `<details class="fit-explain"><summary>Sobivuse selgitus</summary><p>Selgitus pole selle soovituse jaoks saadaval.</p></details>`;
+  }
+  const items = Object.entries(FIT_FIELD_LABELS).map(([key, label]) => {
+    const valLabel = FIT_VALUE_LABELS[c.fit[key]] || FIT_VALUE_LABELS.unknown;
+    return `<li>${esc(label)}: ${esc(valLabel)}</li>`;
+  }).join("");
+  return `<details class="fit-explain"><summary>Sobivuse selgitus</summary><ul>${items}</ul></details>`;
+}
+
+function renderCard(c, idx) {
+  const status = c.status_warning
+    ? `<span class="badge-warn">${esc(c.status)}</span>`
+    : esc(c.status);
+  const checks = (c.checks || []).map((x) => `<li>${esc(x)}</li>`).join("");
+  const recommendation = (c.recommendation || []).map((x) => `<li>${esc(x)}</li>`).join("");
+  const links = (c.link ? [c.link] : []).concat(c.links || [])
+    .map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a>`).join("");
+  const chatBtn = c.measure_id
+    ? `<button type="button" class="ghost" data-measure-id="${esc(c.measure_id)}" data-measure-name="${esc(c.name)}" onclick="openMeasureChat(this)">Küsi lisainfot</button>`
+    : "";
+  const sourceInfo = renderSourceStatus(c.source_status);
+  return `<div class="card">
+    <div class="result-head">
+      <label class="pick">
+        <input type="checkbox" class="pick-cb" data-idx="${idx}" checked />
+        <h3 class="pick-title">${esc(c.name)}</h3>
+      </label>
+      <span class="score">Sobivus ${c.score ?? "?"}/5</span>
+    </div>
+    <div class="meta">${esc(c.funder)} · Toetus: ${esc(c.max_grant)} · Omafinantseering: ${esc(c.cofinancing)} · Staatus: ${status}</div>
+    ${renderGrantWarning(c)}
+    ${renderGrantInfo(c)}
+    <p>${esc(c.explanation)}</p>
+    ${sourceInfo}
+    ${checks ? `<div class="checklist"><h4>Kontrolli enne taotlemist</h4><ul>${checks}</ul></div>` : ""}
+    ${recommendation ? `<div class="recommendation"><h4>Soovitus</h4><ul>${recommendation}</ul></div>` : ""}
+    ${renderFitExplain(c)}
+    <div class="links">${links}</div>
+    ${chatBtn}
+  </div>`;
+}
+
+// Scraped-source freshness and CSV-vs-source conflicts. Renders nothing when
+// the scraper has never run (source_status is null), so the card looks exactly
+// as it did before this feature existed.
+// Only http(s) URLs become links. These come from our own CSV and the Riigi
+// Teataja API, but escaping alone would still let a "javascript:" value through
+// as a clickable href — the scheme has to be checked, not just the characters.
+function safeUrl(u) {
+  return /^https?:\/\//i.test(String(u || "")) ? String(u) : "";
+}
+
+function renderSourceStatus(s) {
+  if (!s) return "";
+  const items = (s.conflicts || []).map((c) => {
+    const href = safeUrl(c.source_url);
+    // Kõik lingid siin viivad KEHTIVALE redaktsioonile — ka `õigusakt`-vastuolu
+    // oma, mis on kaebus CSV lingi, mitte akti sisu kohta. Vana redaktsiooni
+    // lehele me kasutajat ei saada: see jättis mulje, nagu tugineks rakendus
+    // aegunud tekstile.
+    const isAct = c.field === "õigusakt";
+    const linkText = isAct ? "vaata kehtivat redaktsiooni RT-s" : "allikas";
+    const link = href
+      ? ` <a href="${esc(href)}" target="_blank" rel="noopener">${linkText}</a>`
+      : "";
+    const cite = c.citation ? `<span class="cite">${esc(c.citation)}</span>` : "";
+    if (isAct) {
+      return `<li>Meetme CSV link osutab kehtetule redaktsioonile — rakendus kasutab `
+           + `kehtivat teksti, aga link tuleks parandada.${link}${cite}</li>`;
+    }
+    return `<li><strong>${esc(c.field)}</strong>: meil "${esc(c.csv_value)}", `
+         + `allikas "${esc(c.source_value)}".${link}${cite}</li>`;
+  }).join("");
+
+  const warn = items
+    ? `<div class="srcwarn"><h4>⚠ Allikas ei ühti meie andmetega</h4><ul>${items}</ul></div>`
+    : "";
+
+  // Neutraalne rida selle kohta, MILLIST redaktsiooni meetme andmed kajastavad.
+  // Varem oli akti uuenemine ⚠ hoiatus, mida kandis 10 õigusakti 14-st — see
+  // ütles tegelikult ainult "akti on kunagi muudetud" ja mattis päris vastuolud
+  // enda alla. Skreeper loeb niikuinii alati kehtivat redaktsiooni.
+  const act = s.legal_act;
+  let actInfo = "";
+  if (act && (act.kehtiv_id || act.title)) {
+    const actHref = safeUrl(act.url);
+    const name = esc(act.title || "Õigusakt");
+    const named = actHref
+      ? `<a href="${esc(actHref)}" target="_blank" rel="noopener">${name}</a>`
+      : name;
+    const bits = [
+      act.kehtiv_id ? `kehtiv redaktsioon ${esc(act.kehtiv_id)}` : "",
+      act.valid_from ? `jõustunud ${esc(act.valid_from)}` : "",
+    ].filter(Boolean).join(", ");
+    actInfo = `<div class="srcact">ℹ Õigusakt: ${named}`
+            + `${bits ? ` — ${bits}` : ""}</div>`;
+  }
+
+  const fresh = s.checked_at
+    ? `<div class="srcfresh">Allikad kontrollitud ${esc(s.checked_at)}`
+      + `${s.has_legal_source ? " · kehtiv õigusakt kaasatud" : ""}</div>`
+    : "";
+  return warn + actInfo + fresh;
+}
+
+function renderChatMessages(messages) {
+  $("chat-messages").innerHTML = (messages || []).map((m) =>
+    `<div class="chat-msg ${esc(m.role)}">${esc(m.content)}</div>`
+  ).join("");
+  $("chat-messages").scrollTop = $("chat-messages").scrollHeight;
+}
+
+async function openMeasureChat(btn) {
+  const measureId = btn.dataset.measureId;
+  const measureName = btn.dataset.measureName;
+  if (!vestluseId || !measureId) return;
+  show("status");
+  try {
+    const res = await fetch(`/vestlused/${encodeURIComponent(vestluseId)}/threads`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ measure_id: measureId }),
+    });
+    if (!res.ok) throw new Error("Threadi loomine ebaõnnestus (" + res.status + ")");
+    const data = await res.json();
+    currentThreadId = data.thread_id;
+    currentChatTitle = measureName;
+    $("chat-title").textContent = measureName;
+    const msgs = await fetch(`/threads/${encodeURIComponent(currentThreadId)}/messages`);
+    if (!msgs.ok) throw new Error("Ajaloo laadimine ebaõnnestus");
+    renderChatMessages((await msgs.json()).messages);
+    $("chat-panel").classList.remove("hidden");
+  } catch (err) {
+    alert(err.message);
+  } finally {
+    hide("status");
+  }
+}
+
+$("btn-chat-close").onclick = () => {
+  $("chat-panel").classList.add("hidden");
+  currentThreadId = null;
+};
+
+$("btn-chat-send").onclick = async () => {
+  const text = $("chat-input").value.trim();
+  if (!text || !currentThreadId) return;
+  $("btn-chat-send").disabled = true;
+  try {
+    const res = await fetch(`/threads/${encodeURIComponent(currentThreadId)}/messages`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content: text }),
+    });
+    if (res.status === 502) {
+      alert("Vastust ei saadud. Proovi uuesti.");
+      return;
+    }
+    if (!res.ok) {
+      alert("Sõnumi saatmine ebaõnnestus (" + res.status + ")");
+      return;
+    }
+    $("chat-input").value = "";
+    renderChatMessages((await res.json()).messages);
+  } finally {
+    $("btn-chat-send").disabled = false;
+  }
+};
+
+$("btn-chat-clear").onclick = async () => {
+  if (!currentThreadId) return;
+  if (!confirm("Kas tühjendada selle meetme vestluse ajalugu?")) return;
+  const res = await fetch(`/threads/${encodeURIComponent(currentThreadId)}/messages`, { method: "DELETE" });
+  if (!res.ok) {
+    alert("Ajaloo tühjendamine ebaõnnestus");
+    return;
+  }
+  renderChatMessages([]);
+};
+
+$("btn-copy-id").onclick = async () => {
+  if (!vestluseId) return;
+  try {
+    await navigator.clipboard.writeText(vestluseId);
+  } catch {
+    alert(vestluseId);
+  }
+};
+
+$("btn-delete-vestlus").onclick = async () => {
+  if (!vestluseId) return;
+  if (!confirm("Kustuta kogu vestlus (failid, soovitus, chatid)?")) return;
+  const res = await fetch("/vestlused/" + encodeURIComponent(vestluseId), { method: "DELETE" });
+  if (!res.ok && res.status !== 404) {
+    alert("Kustutamine ebaõnnestus (" + res.status + ")");
+    return;
+  }
+  resetToNewVestlus();
+  await loadSavedVestlused();
+};
+
+/** Clear the UI back to an empty step 1. No vestlus is created until needed. */
+function resetToNewVestlus() {
+  setVestlusDisplay(null, false);
+  vestlusOwned = true;
+  currentThreadId = null;
+  lastResults = null;
+  lastRefinement = null;
+  currentIntake = null;
+  uploadLocked = false;
+  setFileLockUI();
+  renderFileList([]);
+  $("chat-panel").classList.add("hidden");
+  $("btn-delete-vestlus").style.display = "";
+  $("btn-save-vestlus").style.display = "";
+  $("btn-refine").disabled = false;
+  $("refine-results").innerHTML = "";
+  $("refine-willing").value = "";
+  hide("refine-panel");
+  hide("step3"); hide("step2"); show("step1");
+}
+
+$("btn-save-vestlus").onclick = async () => {
+  if (!vestluseId) {
+    alert("Vestlus tekib siis, kui laed faili üles või küsid soovitust.");
+    return;
+  }
+  const suggested = currentIntake?.project_description?.slice(0, 60) || "";
+  const title = prompt("Anna vestlusele nimi:", suggested);
+  if (title === null) return;
+  if (!title.trim()) {
+    alert("Nimi ei tohi olla tühi.");
+    return;
+  }
+  const res = await fetch("/vestlused/" + encodeURIComponent(vestluseId) + "/save", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title: title.trim() }),
+  });
+  if (!res.ok) {
+    alert("Salvestamine ebaõnnestus (" + res.status + ")");
+    return;
+  }
+  setVestlusDisplay(vestluseId, true);
+  await loadSavedVestlused();
+};
+
+$("btn-open-saved").onclick = async () => {
+  const code = $("saved-select").value;
+  if (!code) return;
+  show("status");
+  try {
+    const result = await openVestlus(code);
+    if (result !== true) alert("Vestluse avamine ebaõnnestus (" + result + ")");
+  } finally {
+    hide("status");
+  }
+};
+
+$("btn-resume").onclick = async () => {
+  const code = $("resume-input").value.trim().toUpperCase();
+  if (!code) {
+    alert("Kleebi vestluse kood.");
+    return;
+  }
+  show("status");
+  try {
+    const result = await openVestlus(code);
+    if (result === 404) alert("Vestlust ei leitud.");
+    else if (result === 403) alert("See vestlus ei ole sinuga jagatud.");
+    else if (result !== true) alert("Laadimine ebaõnnestus (" + result + ")");
+    else $("resume-input").value = "";
+  } finally {
+    hide("status");
+  }
+};
+
+$("btn-restart").onclick = async () => {
+  resetToNewVestlus();
+  window.scrollTo(0, 0);
+};
+
+// --- login gate ------------------------------------------------------------
+// The overlay stays up until /me confirms a session. When the server runs with
+// AUTH_ENABLED unset it reports auth:"disabled" and we skip straight through,
+// so local development is unchanged.
+
+// A session can expire or be revoked mid-use. Rather than teach all thirteen
+// call sites about 401, wrap fetch once and re-show the overlay. /login and /me
+// are excluded because they handle their own 401 as a normal answer.
+const _fetch = window.fetch.bind(window);
+window.fetch = async (input, init) => {
+  const res = await _fetch(input, init);
+  const url = typeof input === "string" ? input : (input && input.url) || "";
+  if (res.status === 401 && !url.startsWith("/login") && !url.startsWith("/me")) {
+    showLogin("Sessioon aegus. Logi uuesti sisse.");
+  }
+  return res;
+};
+
+async function whoAmI() {
+  try {
+    const res = await fetch("/me");
+    if (!res.ok) return { authenticated: false };
+    return await res.json();
+  } catch (err) {
+    return { authenticated: false };
+  }
+}
+
+/** Reveal the logged-in chrome. One definition, called from both entry points.
+ *
+ * There are two ways into the app — a page load that already carries a valid
+ * session cookie (boot) and typing a code into the overlay (doLogin) — and only
+ * the first used to unhide the logout button. So the button was there after a
+ * refresh and missing right after an actual login, which looks like it comes
+ * and goes at random.
+ */
+function setLoggedIn(authMode) {
+  $("btn-logout").style.display = authMode === "disabled" ? "none" : "inline-block";
+}
+
+function showLogin(message) {
+  const err = $("login-error");
+  if (message) {
+    err.textContent = message;
+    err.style.display = "block";
+  } else {
+    err.style.display = "none";
+  }
+  $("login-overlay").classList.add("show");
+  $("login-code").focus();
+}
+
+async function doLogin() {
+  const code = $("login-code").value.trim();
+  if (!code) return showLogin("Sisesta kood.");
+
+  const btn = $("btn-login");
+  btn.disabled = true;
+  try {
+    const res = await fetch("/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code }),
+    });
+    if (!res.ok) {
+      return showLogin(res.status === 429
+        ? "Liiga palju katseid. Oota hetk ja proovi uuesti."
+        : "Tundmatu või aegunud kood.");
+    }
+    const data = await res.json().catch(() => ({}));
+    setLoggedIn(data.auth);
+    $("login-overlay").classList.remove("show");
+    $("login-code").value = "";
+    await startApp();
+  } catch (err) {
+    showLogin("Ühendus ebaõnnestus. Proovi uuesti.");
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+$("btn-login").onclick = doLogin;
+$("login-code").onkeydown = (e) => { if (e.key === "Enter") doLogin(); };
+
+$("btn-logout").onclick = async () => {
+  await fetch("/logout", { method: "POST" });
+  // Drop the local project pointer too: the next tester on this browser must
+  // not resume the previous one's session code.
+  localStorage.removeItem(VESTLUS_KEY);
+  location.reload();
+};
+
+async function startApp() {
+  await loadMeasureNames();
+  await loadSavedVestlused();
+  resetToNewVestlus();
+
+  const last = localStorage.getItem(VESTLUS_KEY);
+  if (last) {
+    $("resume-input").value = last;
+    // Auto-resume the last project if it still exists. If it does not — it was
+    // unsaved and has since been purged, or it belongs to another tester — we
+    // simply start on an empty form; no vestlus is created until the user acts.
+    const result = await openVestlus(last);
+    if (result !== true) {
+      localStorage.removeItem(VESTLUS_KEY);
+      resetToNewVestlus();
+    }
+  }
+}
+
+async function boot() {
+  const me = await whoAmI();
+  if (!me.authenticated) return showLogin();
+  setLoggedIn(me.auth);
+  await startApp();
+}
+
+boot();
+</script>
+</body>
+</html>

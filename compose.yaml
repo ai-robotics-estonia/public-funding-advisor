@@ -1,0 +1,90 @@
+# Two containers: the app, and a Tailscale sidecar that is its only way in.
+#
+# Private tailnet only — no Funnel. tailscale/serve.json publishes HTTPS on the
+# tailnet (real cert, no browser warning), but Tailscale's own network layer
+# only accepts connections from devices actually authorized into this tailnet,
+# so there is nothing here for the public internet to find or scan. A tester
+# reaches it by installing the free Tailscale client and being shared into this
+# one node — see README "Jagatud testimine".
+#
+# The app deliberately has no `ports:` mapping either. It shares the sidecar's
+# network namespace, so :8000 exists only inside that namespace — `ss -tlnp` on
+# the WSL host shows nothing, and there is no port to forward or firewall.
+#
+#   docker compose up -d
+#   docker compose exec tailscale tailscale serve status
+
+services:
+  tailscale:
+    image: tailscale/tailscale:latest
+    hostname: ${TS_HOSTNAME:-rahastusmeetmed}
+    environment:
+      TS_AUTHKEY: ${TS_AUTHKEY:?TS_AUTHKEY puudub .env-ist}
+      TS_STATE_DIR: /var/lib/tailscale
+      # Userspace networking avoids needing /dev/net/tun and NET_ADMIN, which
+      # is the usual failure point under WSL2. Inbound serve/funnel traffic
+      # does not need the kernel path.
+      TS_USERSPACE: "true"
+      TS_SERVE_CONFIG: /config/serve.json
+      TS_EXTRA_ARGS: ${TS_EXTRA_ARGS:-}
+    volumes:
+      - tailscale-state:/var/lib/tailscale
+      - ./tailscale:/config:ro
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "5"
+
+  app:
+    build: .
+    network_mode: service:tailscale
+    depends_on:
+      - tailscale
+    # ./data is a host bind mount, so its owning UID is whatever created it on
+    # the host (normally your own login) — not the image's baked-in `app` user
+    # (10001). Running the container as that same UID keeps the mount writable
+    # without a chown dance, and it stays consistent with plain `uvicorn
+    # --reload` runs outside Docker, which also write ./data as you.
+    # Set HOST_UID/HOST_GID in .env (`id -u` / `id -g`); defaults to the image
+    # user for anyone who runs this against a named volume instead.
+    user: "${HOST_UID:-10001}:${HOST_GID:-10001}"
+    env_file:
+      - .env
+    environment:
+      APP_DATA_DIR: /data
+      AUTH_ENABLED: "1"
+      LLM_MAX_CONCURRENCY: ${LLM_MAX_CONCURRENCY:-4}
+    volumes:
+      # The only writable mount. Everything the app persists lives here:
+      # app.db, scraper_state.db, uploads, backups.
+      - ./data:/data
+      # Measures editable without a rebuild; read-only so the app can never
+      # rewrite its own knowledge base.
+      - ./rahastusmeetmed:/app/rahastusmeetmed:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1g
+    healthcheck:
+      # python rather than curl: the slim base image ships no curl.
+      test: ["CMD", "python", "-c",
+             "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "5"
+
+volumes:
+  tailscale-state:

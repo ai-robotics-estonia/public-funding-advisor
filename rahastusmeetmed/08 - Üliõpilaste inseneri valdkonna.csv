@@ -1,0 +1,51 @@
+Väli,Soovitatud väärtus,Kindlus,Põhjendus
+Meetme nimetus,Üliõpilaste inseneri valdkonna arendusprojektide toetus,kõrge,Meetme nimetus on EISi lehel sellisena esitatud. (EIS)
+Suurim toetus (€),100 000,kõrge,EISi lehel on suurim toetus 100 000 eurot. (EIS)
+Omafinantseering (%),0,kõrge,EISi lehel on omafinantseeringuks märgitud 0%. (EIS)
+Kogu toetussumma (€),960 000,kõrge,EISi lehel on kogu toetussummaks märgitud 960 000 eurot. (EIS)
+Staatus,suletud,kõrge,EISi lehel on staatus „Suletud”; 2025. aasta taotlusvoor on lõppenud ja järgmine voor on plaanis avada 2026. aasta sügisel. (EIS)
+Meetme kirjeldus,"Meede toetab ülikoolide ja rakenduskõrgkoolide üliõpilaste inseneriteaduse teadmiste arendamist ja nende praktikasse rakendamist koostöös ettevõtetega. Toetust saavad taotleda mittetulundusühingute ja sihtasutuste registrisse kantud mittetulundusühingud või sihtasutused. Projekt peab olema arenduskeskne ning seotud toote või tehnoloogia arendamisega; projekti peab juhtima üliõpilane, meeskonnast vähemalt 70% peavad olema üliõpilased ja kaasatud peab olema vähemalt üks ettevõttest koostööpartner. Toetust saab kasutada projektimeeskonna töötasuks, projektiga seotud lähetusteks, asjade, teenuste ja tööde kuludeks ning ürituste, koolituste ja kommunikatsioonitegevuste kuludeks. Projekti kestuse piirang ei tule antud EISi lehelt üheselt välja.",kõrge,"Kirjeldus tugineb EISi lehe eesmärgile, sihtrühmale, projektinõuetele ning kasutaja antud kulude täpsustusele. (EIS)"
+Link,https://eis.ee/teenused/uliopilaste-inseneri-valdkonna-arendusprojektide-toetus/?context=company-in-estonia,kõrge,Kasutaja antud EISi link.
+Sobiv taotleja,muu,kõrge,"Taotlejaks saavad olla mittetulundusühingute ja sihtasutuste registrisse kantud mittetulundusühingud või sihtasutused, mitte ettevõtted. (EIS)"
+Ettevõtte suurus,määramata,kõrge,Taotleja ei ole ettevõte; ettevõtte suuruse tingimust EISi lehel ei ole esitatud.
+Piirkond,Eesti,keskmine,Taotleja peab olema Eesti registrisse kantud MTÜ või SA; täpsem piirkondlik piirang ei ilmne. (EIS)
+Sektor,kõik sektorid,keskmine,"EISi leht ei sea projektile konkreetset majandussektori piirangut, kuid sisuline fookus on insenerivaldkonna toote või tehnoloogia arendusel koostöös ettevõttega. (EIS)"
+Valdkond,tootearendus; innovatsioon; inseneeria,kõrge,Meede toetab inseneriteaduse teadmiste rakendamist toote või tehnoloogia arendamise kaudu. (EIS)
+Projekti tüüp,tootearendus; koolitus; muu,keskmine,"Põhifookus on arenduskesksetel toote või tehnoloogia arendamise projektidel; kasutaja lisainfo järgi on abikõlblikud ka projektiga seotud üritused, seminarid ja koolitused. (EIS)"
+AI nõue,sobib,madal,"AI ei ole EISi lehel nõutud ega eraldi nimetatud, kuid AI-lahendus võiks sobida, kui see on insenerivaldkonna toote või tehnoloogia arendusprojekt."
+T&A nõue,sobib,keskmine,"Meede toetab arenduskeskseid projekte ja tehnoloogia uuenduslikkust, kuid EISi leht ei sõnasta teadus- ja arendustegevust kohustusliku nõudena. (EIS)"
+Arengufaas,kontseptsioon; prototüüp,keskmine,Allikas räägib toote või tehnoloogia arendamisest ning hindamisel vaadatakse loodava tehnoloogia tehnoloogilist taset ja uuenduslikkust; täpne arengufaas sõltub projektist. (EIS)
+Partneri nõue,nõutav,kõrge,Projektil peab olema vähemalt üks ettevõttest koostööpartner. (EIS)
+Ülikoolipartner,sobiv,keskmine,"Meede on suunatud ülikoolide ja rakenduskõrgkoolide üliõpilastele, kuid taotlejaks on MTÜ või SA ning EISi lehe põhjal ei ole ülikool ise taotleja ega kohustuslik partner. (EIS)"
+Välistavad tingimused,"taotleja ei ole MTÜ või SA; maksuvõlg üle 100 € ja ajatamata; maksudeklaratsioonid või majandusaasta aruanne esitamata; varasem tagasinõutud toetus tasumata; likvideerimis-, sundlõpetamis- või pankrotimenetlus; VTA piirmäär ületatud; koostööpartner puudub; projektijuht ei ole üliõpilane; projektimeeskonnas alla 70% üliõpilasi; projekt ei ole inseneeria valdkonna arendusprojekt; projekt ei sisalda toote või tehnoloogia arendamist; projekti kestus üle 24 kuu; taotletav toetus alla 20 000 € või üle 100 000 €; ülikooli või rakenduskõrgkooli üldkulu; koostööpartneri või partneri tehtav kulu; lisatasud töötasule; laenuintress; panga teenustasu; mitterahaline kulu; sularahas tasutud kulu; topeltrahastatud kulu; seotud isiku tehing; maksuvaba piirmäära ületav lähetuse päevaraha või isikliku sõiduvahendi kulu; õigusabikulu; trahv; viivis; kahjuhüvitis; rahaline karistus; kohtukulu",kõrge,"Välistused tulenevad EISi lehe taotleja, projektimeeskonna ja koostööpartneri nõuetest ning kasutaja antud mitteabikõlblike kulude loetelust. (EIS)"
+Kontrollkohad,"• kontrolli vooru staatust ja eelarvet
+• kontrolli, kas taotleja on MTÜ või SA
+• kontrolli maksuvõlga
+• kontrolli majandusaasta aruande ja maksudeklaratsioonide esitamist
+• kontrolli VTA jääki
+• kontrolli koostööpartneri olemasolu ja rolli
+• kontrolli koostööpartneri kinnituskirja
+• kontrolli intellektuaalomandi varaliste õiguste jäämist taotlejale
+• kontrolli projektijuhi üliõpilase staatust
+• kontrolli, et vähemalt 70% meeskonnast on üliõpilased
+• kontrolli inseneeria valdkonna sobivust
+• kontrolli toote või tehnoloogia arendamise fookust
+• kontrolli projekti kestust kuni 24 kuud
+• kontrolli toetussummat 20 000–100 000 €
+• kontrolli abikõlblikke ja mitteabikõlblikke kulusid
+• kontrolli projektijuhi ja raamatupidaja kulude 10% piirmäära
+• kontrolli kommunikatsiooniplaani olemasolu
+• kontrolli riskianalüüsi olemasolu",kõrge,"Kontrollkohad tulenevad EISi lehe tingimustest, taotlusdokumentide loetelust ja kasutaja lisatud kulureeglitest. (EIS)"
+,,,
+2) Ebaselged või kontrollimist vajavad kohad,,,
+Projekti kestus: EISi lehelt ei tule üheselt välja projekti maksimaalne kestus; see tuleks kontrollida määrusest või taotlusdokumentidest.,,,
+"Ettevõtte suurus: taotleja on MTÜ või SA, mitte ettevõte; ettevõttest koostööpartneri suuruse nõuet EISi leht ei täpsusta.",,,
+"Piirkond: taotleja peab olema Eesti registris, kuid täpsemat piirkondlikku piirangut ei ilmne.",,,
+"AI nõue: AI ei ole nimetatud, kuid võib sobida juhul, kui projekt on insenerivaldkonna toote või tehnoloogia arendus.",,,
+"T&A nõue: meede on arenduskeskne, kuid teadus- ja arendustegevust ei ole eraldi kohustusliku nõudena sõnastatud.",,,
+"Ülikoolipartner: meede on seotud üliõpilastega, kuid ülikool või rakenduskõrgkool ei paista olevat kohustuslik taotleja ega partner.",,,
+Välistatud tegevusalad: antud allikas ei too välja eraldi välistatud EMTAK tegevusalasid.,,,
+3) Võimalikud lisalingid kontrollimiseks,,,
+"https://eis.ee/teenused/uliopilaste-inseneri-valdkonna-arendusprojektide-toetus/?context=company-in-estonia — kasutaja antud EISi link; vajalik staatuse, sihtrühma, taotlusdokumentide, kulude ja hindamiskriteeriumide kontrolliks.",,,
+"EISi lehel viidatud toetuse määrus — aitaks täpsustada projekti kestust, taotleja nõudeid, abikõlblikke kulusid ja võimalikke täiendavaid välistusi.",,,
+"EISi lehel viidatud hindamise juhis — aitaks täpsustada projekti tehnoloogilise põhjendatuse, uuenduslikkuse, meeskonna ja mõju hindamist.",,,

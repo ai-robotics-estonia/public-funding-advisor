@@ -1,0 +1,73 @@
+Väli,Soovitatud väärtus,Kindlus,Põhjendus
+Meetme nimetus,Tootearendustoetus Eurostars,kõrge,EISi lehel on meetme nimetus „Tootearendustoetus Eurostars”. (EIS)
+Suurim toetus (€),ebaselge: 500 000 / 300 000,keskmine,"EISi lehel on suurimaks toetuseks märgitud 500 000 eurot, kuid kasutaja antud Riigi Teataja määruses on toetuse maksimaalne suurus projekti kohta 300 000 eurot. See vastuolu tuleb enne tabelisse lõplikku kandmist üle kontrollida. (EIS)"
+Omafinantseering (%),40–65%,kõrge,"EISi lehel on omafinantseeringuks märgitud 40–60%, kuid määruse järgi on toetuse määr väikese suurusega ettevõtjale 45% ja keskmise suurusega ettevõtjale 35%; tõhusa koostöö korral vastavalt 60% ja 50%. Sellest tuleneb omafinantseering 40–65%, kuid EISi lehe väärtus tuleks eelistatava rakendusinfona üle kontrollida. (EIS)"
+Kogu toetussumma (€),määramata,keskmine,Kasutaja antud allikatest ei tule üheselt välja Eurostarsi Eesti rahastuse kogu eelarve.
+Staatus,avatud,keskmine,"EISi lehel on staatus „Avatud” ning eelnõustamine on avatud. Samas Eurostars 3 11. taotlusvoor avatakse EISi info järgi 09.07.2026 ja taotluste esitamise tähtaeg on 10.09.2026, seega tuleb konkreetse vooru hetkeseis üle kontrollida. (EIS)"
+Meetme kirjeldus,"Eurostars toetab rahvusvahelisi tootearendusprojekte, mis on saanud Eureka innovatsioonikoostöö võrgustikult positiivse hinnangu. Toetus on mõeldud Eesti ettevõtetele, kes viivad tootearendusprojekti ellu koos vähemalt ühe ettevõtlus- või tootearenduspartneriga Eurostarsi programmis osalevast riigist. Toetust saab kasutada rakendusuuringuks, tootearenduseks ja intellektuaalomandi esmakaitseks, sh töötasu, lähetuste, teenuste, materjalide, seadmete kasutamise ja IO kaitse kuludeks. EIS rahastab Eestis registreeritud ettevõtteid, kellel on vajalik omafinantseering, kes ei ole raskustes ning kelle projekt mõjutab Eesti majandust. Projekti abikõlblikkuse periood on kuni 36 kuud.",kõrge,"EISi leht kirjeldab Eurostarsi kui rahvusvaheliste tootearendusprojektide toetust, mille eelduseks on Eureka positiivne hinnang; määrus täpsustab abikõlblikkuse perioodi kuni 36 kuud. (EIS)"
+Link,https://eis.ee/teenused/eurostars-3/?context=ettevote-eestis,kõrge,Kasutaja antud põhilink.
+Sobiv taotleja,VKE,keskmine,"EISi leht nimetab VKEsid ja suurettevõtteid, kuid kasutaja antud määruse kohaldamisala ja taotleja nõuded viitavad Eesti äriregistrisse kantud väikese ja keskmise suurusega ettevõtjale. Suurettevõtja Eesti rahastamise võimalus vajab kontrolli. (EIS)"
+Ettevõtte suurus,VKE,keskmine,"Määruse järgi on sihtrühm Eesti äriregistris registreeritud VKE, kelle osalusega projekt on saanud Eurostarsi taotlusvoorus positiivse otsuse. EISi lehel on samas mainitud ka suurettevõtteid, mistõttu tuleb see vastuolu üle kontrollida. (EIS)"
+Piirkond,Eesti; rahvusvaheline,kõrge,"Eesti rahastuse saaja peab olema Eestis registreeritud ettevõte, kuid projekt tuleb ellu viia rahvusvahelise konsortsiumina koos partneriga Eurostarsi programmis osalevast riigist. (EIS)"
+Sektor,kõik sektorid,keskmine,Eurostars on üldine rahvusvaheline T&A ja tootearenduse programm; kasutaja antud Eurostarsi põhiallikad ei piira seda ühe konkreetse majandussektoriga.
+Valdkond,rahvusvaheline T&A; tootearendus; innovatsioon,kõrge,"Eurostars on suunatud rahvusvahelisele teadus- ja arenduskoostööle ning EISi leht rõhutab tootearendusprojekte, innovatsiooni ja T&A taset. (EIS)"
+Projekti tüüp,teadus- ja arendusprojekt; tootearendus; prototüüpimine; testimine; sertifitseerimine; intellektuaalomandi esmakaitse,kõrge,"EISi lehe järgi saab toetust kasutada rakendusuuringuks, tootearenduseks ja IO esmakaitseks. Kasutaja lisainfo järgi on teenuste kulude all abikõlblikud arenduseks vajalikud uuringud, nõustamine, projekteerimine, prototüüpimine, testimine ja sertifitseerimine. (EIS)"
+AI nõue,sobib,keskmine,"AI ei ole Eurostarsi üldnõue, kuid AI-projekt võib sobida, kui see on rahvusvaheline T&A- või tootearendusprojekt ja täidab Eurostarsi tingimused."
+T&A nõue,nõutav,kõrge,Eurostars on rahvusvahelisele teadus- ja arenduskoostööle suunatud programm ning EISi hindamiskriteeriumides on innovatsiooni ja T&A tase. (EIS)
+Arengufaas,prototüüp; piloot; turuleviimine,keskmine,"Allikad ei anna TRL-vahemikku, kuid projekt peab olema tootearenduslik, innovaatiline ja ärilise rakenduspotentsiaaliga; EISi hindamisel vaadatakse mõju, turgu ja kommertsialiseerimist. (EIS)"
+Partneri nõue,konsortsium nõutav,kõrge,Toetuse saamiseks peab Eesti ettevõttel olema vähemalt üks ettevõtlus- või tootearenduspartner Eurostarsi programmis osalevast riigist ning ühine taotlus esitatakse Eurekale koos partneriga. (EIS)
+Ülikoolipartner,sobiv,keskmine,"EISi leht ütleb, et EIS rahastab Eesti poolel ettevõtteid, mitte Eesti ülikoole, kuid julgustab Eesti ülikoole Eureka võrgustiku tegevustes osalema oma vahenditega. Määruse järgi võib tõhus koostöö toimuda ka teadusuuringute ja teadmise levitamise asutusega. (EIS)"
+Välistavad tingimused,"• ettevõte ei ole Eestis registreeritud
+• taotleja ei ole VKE, kui lähtuda määruse sihtrühmast
+• projekt ei ole saanud Eurostars/Eureka positiivset otsust
+• rahvusvaheline konsortsium puudub
+• partner ei ole Eurostarsi programmis osalevast riigist
+• ettevõte on raskustes
+• omafinantseeringu katmise vahendid puuduvad
+• oluline mõju Eesti majandusele puudub
+• maksu- või maksevõlg üle 100 € ja ajatamata
+• maksudeklaratsioonid esitamata
+• tegevuste või kohustustega on alustatud enne EISile taotluse esitamist
+• projekti kestus üle 36 kuu
+• konsortsiumileping puudub pärast Eureka heakskiitu
+• puhkusetasud ja preemiad
+• erisoodustused
+• päevarahad
+• eeluuringud
+• turu- ja konkurentsiuuringud
+• turundustegevused
+• üldkulud
+• olemasolevate materjalide kasutamise kulu
+• seadmete soetamine
+• kaubamärgi omandamine, valideerimine ja kaitsmine",kõrge,"Välistused tulenevad EISi ettevõtte tingimustest, Eurostarsi positiivse otsuse ja partneri nõudest, määruse taotleja ja projekti nõuetest ning kasutaja antud mitteabikõlblike kulude täpsustusest. (EIS)"
+Kontrollkohad,"• kontrolli EISi lehelt staatust ja eelarvet
+• kontrolli Eurostars 2026 septembri vooru tähtaega
+• kontrolli, kas taotleja on Eestis registreeritud ettevõte
+• kontrolli, kas Eesti rahastus on ainult VKEdele või ka suurettevõtetele
+• kontrolli suurima toetuse vastuolu: EIS 500 000 € vs määrus 300 000 €
+• kontrolli Eureka/Eurostars positiivse otsuse olemasolu
+• kontrolli rahvusvahelise konsortsiumi koosseisu
+• kontrolli partneri riiki Eurostarsi programmis osalevate riikide loetelust
+• kontrolli konsortsiumilepingu olemasolu ja 6 nädala nõuet pärast Eureka heakskiitu
+• kontrolli ettevõtte raskustes olemist
+• kontrolli omafinantseeringu katmise võimekust
+• kontrolli mõju Eesti majandusele: töökohad, tootmine, arendustegevus, IO ja müügitulu asukoht
+• kontrolli toetuse määra ettevõtte suuruse ja tõhusa koostöö järgi
+• kontrolli abikõlblikke ja mitteabikõlblikke kulusid
+• kontrolli, et tegevustega ei ole alustatud enne EISile taotluse esitamist
+• kontrolli projekti kestust kuni 36 kuud
+• kontrolli aruandluse sagedust",kõrge,"Kontrollkohad on seotud staatuse, vooru tähtaja, Eesti rahastuse ülempiiri vastuolu, VKE/suurettevõtte käsitluse, konsortsiumi, Eesti majandusliku mõju, toetuse määra ja kulude abikõlblikkusega. (EIS)"
+,,,
+2) Ebaselged või kontrollimist vajavad kohad,,,
+"Suurim toetus: EISi leht näitab 500 000 €, kuid Riigi Teataja määrus näitab 300 000 €. See on kõige olulisem vastuolu ja vajab EISi kinnitust.",,,
+"Ettevõtte suurus: EISi leht mainib VKEsid ja suurettevõtteid, kuid määrus piiritleb taotleja Eesti äriregistrisse kantud VKEna. Seetõttu panin tabelisse ettevaatlikult „VKE”.",,,
+"Omafinantseering: EISi lehel on 40–60%, määrusest arvutatuna võib keskmise suurusega ettevõtjal ilma tõhusa koostööta olla omafinantseering 65%. Vajab kinnitamist, kas EISi lehel toodud 40–60% on uuem rakenduspraktika või lihtsustatud vahemik.",,,
+Kogu toetussumma: kasutaja antud allikatest ei selgu Eesti eelarve konkreetne maht.,,,
+"Staatus: EISi lehel on „Avatud”, kuid Eurostars 3 11. voor avatakse 09.07.2026 ja tähtaeg on 10.09.2026; seetõttu on sisuliselt vaja eristada eelnõustamist ja konkreetset taotlusvooru.",,,
+"AI nõue: AI ei ole nõutav, kuid sobib, kui projekt vastab Eurostarsi T&A ja tootearenduse tingimustele.",,,
+"Lightweighting ja Biotech voorud: need ei ole siin enam Eurostarsi kokkuvõtte põhisisus, sest plaanid need eraldi meetmetena kirja panna.",,,
+3) Võimalikud lisalingid kontrollimiseks,,,
+"https://eis.ee/teenused/eurostars-3/?context=ettevote-eestis — kasutaja antud EISi põhilink; vajalik staatuse, eelnõustamise, suurima toetuse, Eesti ettevõtte tingimuste ja praktilise taotlemise kontrolliks.",,,
+"https://www.riigiteataja.ee/akt/123112021005?leiaKehtiv — kasutaja antud määruse link; vajalik toetuse määra, maksimaalse toetuse, abikõlblike kulude, taotleja nõuete ja projekti kestuse kontrolliks.",,,
+https://www.eurekanetwork.org/programmes-and-calls/eurostars/eurostars-call-for-projects-september-2026 — kasutaja antud Eurostars 2026 septembri vooru link; vajalik konkreetse vooru tingimuste ja tähtaja kontrolliks.,,,
+https://www.eurekanetwork.org/about-us/eureka-countries/ — kasutaja antud Eureka riikide loetelu; vajalik partneri riigi sobivuse kontrolliks.,,,

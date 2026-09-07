@@ -1,0 +1,64 @@
+Väli,Soovitatud väärtus,Kindlus,Põhjendus
+Meetme nimetus,Kaitsetööstuse tootearenduse toetus,kõrge,Meetme ametlik nimetus on EISi lehel sellisena esitatud. (EIS)
+Suurim toetus (€),3 000 000,kõrge,EISi lehel on suurim toetus 3 000 000 eurot ning taotletav toetussumma 250 000 kuni 3 000 000 eurot. (EIS)
+Omafinantseering (%),20–80%,kõrge,"EISi lehel on omafinantseeringuna märgitud 20%–80%. Toetuse määr sõltub tegevuse liigist, ettevõtte suurusest ja tõhusa koostöö olemasolust. (EIS)"
+Kogu toetussumma (€),23 800 000,kõrge,EISi lehel on kogu toetussummana märgitud 23 800 000 eurot. (EIS)
+Staatus,avatud,kõrge,EISi lehel on staatus „Avatud” ning taotlemine on jooksev. (EIS)
+Meetme kirjeldus,"Kaitsetööstuse tootearenduse toetus toetab ettevõtjate teadus- ja arendustegevuse ning innovatsioonivõimekuse suurendamist kaitsevaldkonnaga seotud projektide elluviimisel. Toetuse tulemusena peab valmima rahvusvaheliselt konkurentsivõimeline uus või oluliselt muudetud tehnoloogia, toode või teenus. Toetatavad tegevused on rakendusuuring, tootearendus, nendega seotud teostatavusuuring ja intellektuaalomandi esmakaitse. Taotleja peab olema Eesti äriregistris registreeritud äriühing ning enne taotlemist tuleb läbida eelnõustamine ja saada projektiplaanile positiivne eelhinnang. Projekti abikõlblikkuse periood on kuni 36 kuud, mõjuval põhjusel pikendatav kuni kuue kuu võrra, kuid tegevused peavad lõppema hiljemalt 31.10.2029.",kõrge,"Kirjeldus tugineb EISi lehe eesmärgile, sihtrühmale, eelnõustamisele, TRL-vahemikule, toetatavatele tegevustele, Eesti 2035 nõudele ja projekti kestuse piirangule. (EIS)"
+Link,https://eis.ee/teenused/kaitsetoostuse-tootearendus/?context=company-in-estonia,kõrge,Kasutaja antud EISi link.
+Sobiv taotleja,ettevõte,kõrge,EISi lehe järgi saavad toetust taotleda Eesti äriregistrisse kantud äriühingud. (EIS)
+Ettevõtte suurus,kõik,kõrge,"Toetuse määrade tabel eristab väikeettevõtet, keskmise suurusega ettevõtet ja suurettevõtet; seega on meede avatud eri suurusega ettevõtetele. (EIS)"
+Piirkond,Eesti,kõrge,"Taotleja peab olema Eesti äriregistrisse kantud äriühing. Kasutaja lisainfo järgi võib hindamisel olla oluline, kas projekti tegevused toimuvad väljaspool Harjumaad. (EIS)"
+Sektor,kaitsetööstus,kõrge,"EISi leht ütleb, et toetatakse kaitsetööstuse ettevõtete arendustegevust, ning projektinäited on kaitsetööstuse ja siseturvalisuse lahendused. (EIS)"
+Valdkond,kaitsetööstus; tootearendus; innovatsioon; T&A; Eesti 2035,keskmine,"EISi lehel nimetatakse oodatavate projektidena mh droonilahendusi, elektroonilise sõjapidamise kaitselahendusi, lahingusüsteeme, olukorrateadlikkuse lahendusi, siseturvalisust, mehitamata sõidukeid ning küberturvalisust ja tarkvara. AI ei ole eraldi nimetatud, kuid sobib tõlgenduslikult näiteks mehitamata sõidukite, droonide, simulatsioonikeskkondade või tarkvaralahenduste alla. Kasutaja lisainfo ressursitootlikkuse kohta seob meetme vajadusel energiaefektiivsete toodete, materjalide ja kohalike ressurssidega. (EIS)"
+Projekti tüüp,teadus- ja arendusprojekt; tootearendus; teostatavusuuring; intellektuaalomandi esmakaitse,kõrge,"EISi leht nimetab toetatavate tegevustena rakendusuuringut, tootearendust, teostatavusuuringut ja intellektuaalomandi esmakaitset. (EIS)"
+AI nõue,sobib,keskmine,"AI ei ole EISi lehel kohustusliku nõudena nimetatud, kuid tarkvara, simulatsioonikeskkondade, mehitamata sõidukite, olukorrateadlikkuse ja droonilahenduste projektid võivad AI-komponenti selgelt hõlmata. (EIS)"
+T&A nõue,nõutav,kõrge,"EISi lehel nõutakse arendusidee, uurimisküsimuse ja hüpoteesi kirjeldamist ning toetusesse sobivad rakendusuuringu ja eksperimentaalse tootearenduse projektid TRL 3–7. (EIS)"
+Arengufaas,kontseptsioon; prototüüp; piloot,kõrge,Toetusesse sobivad projektid TRL 3–7: rakendusuuring TRL 3–5 ja eksperimentaalne tootearendus TRL 6–7. (EIS)
+Partneri nõue,soovitatav,keskmine,"EISi lehel küsitakse meeskonna ja partnerite kohta ning tõhus koostöö võib suurendada toetuse määra, kuid partner ei ole üldtingimusena kohustuslik. (EIS)"
+Ülikoolipartner,sobiv,keskmine,"EISi leht küsib, kas kaasatakse teadusasutusi või teisi koostööpartnereid; tõhus koostöö võib toimuda ettevõtja ja vähemalt ühe TA asutuse vahel, kui TA asutus kannab vähemalt 10% abikõlblikest kuludest ja tal on õigus tulemusi avaldada. (EIS)"
+Välistavad tingimused,"• ettevõte ei ole Eesti äriregistris registreeritud äriühing
+• eelnõustamine läbimata
+• positiivse eelhinnangu saanud projektiplaan puudub
+• projekt ei ole kaitsevaldkonnaga seotud
+• projekt ei aita saavutada määruse eesmärki ja tulemust
+• projekt ei vasta Eesti 2035 ja horisontaalsete põhimõtete nõuetele
+• projekt ei järgi „ei kahjusta oluliselt” põhimõtet
+• tegevustega või kohustuste võtmisega on alustatud enne taotluse esitamist
+• taotletav toetus alla 250 000 € või üle 3 000 000 €
+• projekti abikõlblikkuse periood üle 36 kuu ilma põhjendatud pikenduseta
+• projekti tegevusi ei lõpetata hiljemalt 31.10.2029
+• raskustes ettevõtja, v.a määruses lubatud erandid idu- või kasvuettevõtjale
+• Euroopa Komisjoni varasema tagasinõudmisotsuse alusel abi tagasimaksmata
+• taotleja või partneri üle valitsevat mõju omava isiku suhtes on algatatud sundlõpetamis-, likvideerimis- või pankrotimenetlus
+• projektipartnerite vaheliste tehingute kulud
+• kulu ei ole projektiga otseselt seotud või ei ole tasutud pangaülekandega",keskmine,"EISi leht sätestab Eesti äriregistri, eelnõustamise, eelhinnangu, Eesti 2035, TRL 3–7, toetussumma ja 36 kuu nõuded. Ostumenetluse juures on lehel toodud seotud isikute tehingu keeld ning 100 000 euro ja enam ostude puhul riigihangete registri kasutamise nõue. Eraldi EMTAK-põhiseid välistatud tegevusalasid antud allikast ei ilmne. (EIS)"
+Kontrollkohad,"• kontrolli EISi lehelt vooru tegelikku staatust ja eelarvejääki
+• kontrolli, kas taotleja on Eesti äriregistris registreeritud äriühing
+• kontrolli eelnõustamise läbimist
+• kontrolli positiivse eelhinnangu saanud projektiplaani olemasolu
+• kontrolli kaitsevaldkonna seost ja taotlusvooru kinnitatud kaitsetööstusvaldkondi
+• kontrolli, kas tegevus on rakendusuuring, tootearendus, nendega seotud teostatavusuuring või IO esmakaitse
+• kontrolli Eesti 2035 panust: väljaspool Harjumaad loodud SKP ja ressursitootlikkus
+• kontrolli DNSH põhimõtte järgimist
+• kontrolli toetuse määra tegevuse liigi ja ettevõtte suuruse järgi
+• kontrolli tõhusa koostöö mõju toetuse määrale
+• kontrolli partneri riigi ja juriidilise staatuse sobivust
+• kontrolli TA-asutuse rolli ja kulude osakaalu, kui kasutatakse ülikooli/TA partnerit
+• kontrolli, et tegevustega ega kohustustega ei ole alustatud enne taotluse esitamist
+• kontrolli abikõlblikke kulusid ja pangaülekandega tasumist
+• kontrolli projekti perioodi: kuni 36 kuud, võimalik pikendus kuni 6 kuud, lõpptähtaeg 31.10.2029
+• kontrolli hindamiskriteeriumide lävendeid",kõrge,"Kontrollkohad tulenevad EISi lehe nõuetest, toetuse määra erisustest, tõhusa koostöö tingimustest, ostumenetluse reeglitest ja kasutaja lisatud Eesti 2035 täpsustustest. (EIS)"
+,,,
+2) Ebaselged või kontrollimist vajavad kohad,,,
+"Staatus: määruse järgi on taotlemine jooksvalt avatud kuni eelarve ammendumiseni või perioodi lõppemiseni, kuid tegelik avatud/peatatud staatus tuleb EISi lehelt üle kontrollida.",,,
+"Kaitsetööstusvaldkondade täpne loetelu: määrus ütleb, et hindamisel arvestatakse projekti kooskõla taotlusvooru kinnitatud kaitsetööstusvaldkondadega, kuid nende konkreetne loetelu tuleb kontrollida EISi taotlusvooru materjalidest.",,,
+"Välistatud tegevusalad: määrusest ei ilmne eraldi EMTAK-põhist välistatud tegevusalade loetelu. Välistused tulenevad pigem riigiabi reeglitest, raskustes ettevõtja piirangust, kaitsevaldkonna sobivusest, projekti sisust ja abikõlblikkuse nõuetest.",,,
+"AI nõue: määrus AI-d eraldi ei nimeta. Varasem väärtus „sobib” võib jääda, kui AI on osa kaitsevaldkonnaga seotud tehnoloogia, toote või teenuse arendusest, kuid AI ei ole nõutav.",,,
+"Arengufaas: määrus ise TRL-skaalat nähtud lõikudes ei kasuta, kuigi EISi leht võib seda teha. Kui tabelis kasutatakse „kontseptsioon; prototüüp; piloot”, tuleb see jätta EISi lehe põhjal kontrollitavaks.",,,
+"Ülikoolipartner: ülikool/TA-asutus ei ole kohustuslik, kuid on selgelt sobiv partner tõhusa koostöö raames.",,,
+3) Võimalikud lisalingid kontrollimiseks,,,
+"https://www.riigiteataja.ee/akt/109012026041 — kasutaja antud määruse link; vajalik toetatavate tegevuste, toetuse määrade, taotleja ja partneri nõuete, projekti perioodi, abikõlblike kulude, Eesti 2035 näitajate ja välistuste kontrolliks.",,,
+"https://eis.ee/teenused/kaitsetoostuse-tootearendus/?context=company-in-estonia — varasem EISi meetme link; vajalik tegeliku staatuse, eelarvejäägi, taotlusvooru kaitsetööstusvaldkondade, vormide ja praktiliste juhiste kontrolliks.",,,
+"EISi lehel viidatud toetuse määrus — vajalik taotleja täpsemate nõuete, abikõlblike kulude, võimalike välistuste ja riigiabi tingimuste kontrolliks.",,,
+"EISi lehel viidatud hindamismetoodika — vajalik Eesti 2035 panuse, väljaspool Harjumaad toimuva tegevuse ja ressursitootlikkuse hindamisloogika kontrolliks.",,,

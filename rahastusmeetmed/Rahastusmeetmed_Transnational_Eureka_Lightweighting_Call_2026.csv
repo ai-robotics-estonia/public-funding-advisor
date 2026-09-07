@@ -1,0 +1,53 @@
+Väli,Soovitatud väärtus,Kindlus,Põhjendus
+Meetme nimetus,Transnational Eureka Lightweighting Call 2026,kõrge,Meetme nimetus on toodud koik.csv-s ja Eureka võrgustiku lehel.
+Suurim toetus (€),500 000,kõrge,Plaan: maksimaalne rahastussumma projekti kohta on 500 000 eurot.
+Omafinantseering (%),20–60%,kõrge,"Plaan: idufirmad ja väikeettevõtted saavad kuni 60% eksperimentaalse arenduse korral ja kuni 80% rakendusuuringu korral; suurettevõtted kuni 40% abikõlblikest projektikuludest. Sellest tuleneb omafinantseering 20–60%."
+Kogu toetussumma (€),1 000 000,kõrge,Plaan: riiklik kogueelarve on üks miljon eurot.
+Staatus,avatud,kõrge,Koik.csv andmetel on staatus avatud.
+Meetme kirjeldus,"Eureka rahvusvaheline võrgustikuprojektide voor toetab rakenduslikke T&A projekte kergkaalulahenduste, ringmajandusliku disaini, uute või alternatiivsete materjalide, tootmisprotsesside ja digitehnoloogiate arendamiseks. Projekt peab olema rahvusvaheline koostööprojekt ning suunatud innovaatilise toote, protsessi või teenuse uurimisele või arendamisele kommertsialiseerimise eesmärgiga. Voorus on osalevate riikidena märgitud Austria, Saksamaa, Poola, Slovakkia ja Hispaania. Projekt võib kesta kuni 36 kuud ning konsortsiumis peab olema vähemalt kaks sõltumatut juriidilist isikut vähemalt kahest osalevast Eureka riigist.",kõrge,Kirjeldus pärineb koik.csv-st.
+Link,https://www.eurekanetwork.org/programmes-and-calls/network-projects/transnational-eureka-lightweighting-call-2026/,kõrge,Link on toodud koik.csv-s.
+Sobiv taotleja,konsortsium,kõrge,Koik.csv: sobiv taotleja on konsortsium.
+Ettevõtte suurus,kõik,kõrge,"Koik.csv: ettevõtte suurus on kõik. Plaan täpsustab, et EIS rahastab nii VKEsid kui suurettevõtteid."
+Piirkond,rahvusvaheline,kõrge,"Koik.csv: piirkond on rahvusvaheline. Osalevad riigid: Austria, Saksamaa, Poola, Slovakkia ja Hispaania."
+Sektor,kõik sektorid,kõrge,Koik.csv andmetel.
+Valdkond,kergkaalutehnoloogiad; ringmajandus; materjalid; digitehnoloogiad,kõrge,Koik.csv andmetel.
+Projekti tüüp,rahvusvaheline T&A koostööprojekt,kõrge,Koik.csv andmetel.
+AI nõue,sobib,keskmine,AI nõuet ei ole sõnaselgelt mainitud. Digitehnoloogiate valdkond võib hõlmata AI-lahendusi.
+T&A nõue,nõutav,kõrge,"Koik.csv: T&A nõue on jah. Plaan kinnitab, et meede toetab rakenduslikke T&A projekte."
+Arengufaas,rakendusuuring; arendustegevus; demonstratsioon,kõrge,Koik.csv andmetel.
+Partneri nõue,vähemalt 2 sõltumatut juriidilist isikut vähemalt 2 osalevast Eureka riigist,kõrge,Koik.csv andmetel.
+Ülikoolipartner,ei ole kohustuslik,kõrge,Koik.csv andmetel.
+Välistavad tingimused,"• puudub rahvusvaheline koostööprojekt
+• puudub vähemalt 2 sõltumatut juriidilist isikut vähemalt 2 osalevast Eureka riigist
+• projekt ei ole suunatud innovaatilise toote, protsessi või teenuse uurimisele või arendamisele
+• puudub kommertsialiseerimise eesmärk
+• projekt ei ole tsiviilotstarbeline
+• üks organisatsioon või riik vastutab üle 70% projekti eelarvest
+• projekt ei too kasu kõigile partneritele
+• puudub tehnoloogilisest koostööst tulenev selge lisandväärtus
+• toode või protsess ei ole innovaatiline või mõjupotentsiaaliga
+• projekti kestus ületab 36 kuud
+• ettevõte ei ole Eesti äriregistris registreeritud
+• ettevõte on raskustes
+• ettevõttel puuduvad vajalikud vahendid projekti omafinantseeringuks
+• ettevõttel puudub oluline mõju Eesti majandusele
+• ettevõte on saanud EISi rahastust rahvusvahelises koostööprojektis osalemiseks viimase kolme aasta jooksul",kõrge,Välistused tulenevad koik.csv-st ning plaanist.
+Kontrollkohad,"• kontrolli, kas Eesti organisatsioon saab selles voorus rahastust
+• kontrolli osalevate riikide lõplikku nimekirja
+• kontrolli riiklikke rahastustingimusi
+• kontrolli toetuse määra ja omafinantseeringut
+• kontrolli toetuse ülempiiri
+• kontrolli vooru kogu eelarvet
+• kontrolli konkreetse organisatsioonitüübi rahastatavust
+• kontrolli riiklikku taotlusprotseduuri ja lisadokumente
+• kontrolli, kas vajalikud lisadokumendid on olemas: GANTT, co-signature form, lisad
+• kontrolli konsortsiumilepingu nõuet enne projekti algust
+• kontrolli kohustuslikku eelnõustamise nõuet Enterprise Estonia juures enne taotlemist
+• kontrolli, kas ettevõte ei ole saanud EISi rahastust rahvusvahelises koostööprojektis osalemiseks viimase kolme aasta jooksul
+• kontrolli, kas Eesti taotleja esitab rahastuse taotluse EISile pärast positiivset hindamist ja rahastuse saadavuse kirja",kõrge,Kontrollkohad on koostatud koik.csv andmete ja plaani põhjal.
+,,,
+2) Ebaselged või kontrollimist vajavad kohad,,,
+"Kas Eesti ettevõtted saavad selles voorus rahastust: koik.csv märgib ""kontrolli, kas Eesti organisatsioon saab selles voorus rahastust"". Plaan kirjeldab EISi rahastustingimusi, kuid Eesti osalemine vajab kinnitamist.",,,
+"Toetuse määr idufirmadele vs väikeettevõtetele: plaan eristab idufirmasid ja väikeettevõtteid, kuid täpseid piire nende vahel ei seleta.",,,
+3) Võimalikud lisalingid kontrollimiseks,,,
+https://www.eurekanetwork.org/programmes-and-calls/network-projects/transnational-eureka-lightweighting-call-2026/ — Eureka võrgustiku lehel olev vooru leht; vajalik osalevate riikide ja tingimuste kontrolliks.,,,

@@ -1,0 +1,34 @@
+Väli,Soovitatud väärtus,Kindlus,Põhjendus
+Meetme nimetus,Ettevõtte investeeringu toetus,kõrge,Ametlik nimetus on nii EISi lehel kui ka määruses „Ettevõtte investeeringu toetus“. (EIS)
+Suurim toetus (€),3 000 000,kõrge,"EISi lehel on suurim toetus 3 000 000 eurot; määrus kinnitab, et toetus projekti kohta on kuni 3 000 000 eurot. (EIS)"
+Omafinantseering (%),vähemalt 85%; Harjumaal vähemalt 90%,kõrge,"EISi lehel on omafinantseering vähemalt 85%. Määruse järgi on toetuse osakaal kuni 15%, Harju maakonnas kuni 10%, millest tuleneb omafinantseering vastavalt vähemalt 85% või 90%. (EIS)"
+Kogu toetussumma (€),määramata,kõrge,Kasutaja antud allikatest ei leidnud kogu meetme või jooksva vastuvõtu eelarvet.
+Staatus,jooksvalt avatud,kõrge,"EISi lehel on staatus „Avatud“; määrus ütleb, et taotluseid esitatakse jooksvalt. (EIS)"
+Meetme kirjeldus,"Toetus on mõeldud Eestis registreeritud äriühingutele, kes teevad uusi majandustegevust soodustavaid põhivarainvesteeringuid. Toetatakse materiaalse või immateriaalse vara investeeringuid seoses uue ettevõtja asutamisega või olemasoleva ettevõtja tegevuse mitmekesistamisega, kui eesmärk on suurema lisandväärtuse loomine ja rahvusvahelise konkurentsivõime kasv. Toetuse summa projekti kohta on 1 000 000–3 000 000 eurot ning toetuse osakaal on kuni 15%, Harjumaal kuni 10%. Projekt peab olema seotud abikõlblike investeeringukuludega ning projekti abikõlblikkuse periood kestab kuni 36 kuud.",kõrge,"Kokkuvõte põhineb EISi eesmärgikirjeldusel, määruse eesmärgil, toetatavatel tegevustel, toetuse suurusel ja projekti kestuse sättel. (EIS)"
+Link,https://eis.ee/teenused/ettevotte-investeeringu-toetus/?context=ettevote-eestis,kõrge,Kasutaja antud põhilink.
+Sobiv taotleja,ettevõte,kõrge,Määruse järgi võib toetust taotleda Eestis registreeritud äriühing. (Riigi Teataja)
+Ettevõtte suurus,kõik,keskmine,Määrus ei piira taotlejat VKEdega; taotlejaks on Eestis registreeritud äriühing. Suurusepiirangut kasutaja antud allikatest ei leidnud. (Riigi Teataja)
+Piirkond,Eesti,kõrge,Taotleja peab olema Eestis registreeritud äriühing; Harju maakonnas kehtib eraldi madalam toetuse osakaal. (Riigi Teataja)
+Sektor,"kõik sektorid, v.a välistatud tegevusalad",kõrge,Määrus loetleb välistatud EMTAK tegevusalad; üldist positiivset sektoripiirangut ei ole eraldi toodud. (Riigi Teataja)
+Valdkond,investeeringud; rahvusvaheline konkurentsivõime; lisandväärtus,kõrge,"Meetme eesmärk on toetada investeeringuid, suurema lisandväärtuse loomist ja rahvusvahelise konkurentsivõime kasvu. (Riigi Teataja)"
+Projekti tüüp,investeering,kõrge,Toetatakse investeeringuid materiaalsesse või immateriaalsesse põhivarasse / alginvesteeringuid. (EIS)
+AI nõue,sobib,madal,"AI ei ole allikates nõutud. Samas võib AI-lahendus sobida vaid juhul, kui see on osa abikõlblikust investeeringust, näiteks immateriaalsesse varasse või tootmisprotsessi investeerimisest; see vajab projektipõhist kontrolli. (Riigi Teataja)"
+T&A nõue,ei ole vajalik,keskmine,"Meede on investeeringutoetus, mitte T&A toetus. Allikates ei ole T&A kohustusliku tingimusena esitatud. (Riigi Teataja)"
+Arengufaas,skaleerimine,keskmine,"Meede toetab suuri põhivarainvesteeringuid ja uut majandustegevust soodustavat alginvesteeringut, mitte varase faasi ideed või prototüüpi. (EIS)"
+Partneri nõue,ei,kõrge,Allikates ei ole nõuet partneri või konsortsiumi kaasamiseks; taotleja on äriühing. (Riigi Teataja)
+Ülikoolipartner,ei ole vajalik,kõrge,Allikates ei ole ülikooli või teadusasutuse partnerlust nõutud ega rõhutatud.
+Välistavad tingimused,"· taotleja ei ole Eestis registreeritud äriühing;· põhitegevusala kuulub välistatud EMTAK tegevusalasse: põllumajandus, metsamajandus ja kalapüük; tubakatoodete tootmine; programmeerimine, konsultatsioonid jms tegevused; finants- ja kindlustustegevus; juriidilised toimingud ja arvepidamine; peakontorite tegevus ning juhtimisalane nõustamine; reklaamindus, turu-uuringud ja suhtekorraldus; rentimine ja kasutusrent; tööjõu rent ja muud tööjõuteenused; hasartmängude ja kihlvedude korraldamine;· taotleja on raskustes ettevõtja;· täitmata Euroopa Komisjoni tagasinõude otsus;· maksu- ja maksevõlg üle 100 euro ning ajatamata;· algatatud likvideerimis-, sundlõpetamis- või pankrotimenetlus või tehtud pankrotiotsus;· taotlejale või temaga samasse kontserni kuuluvale äriühingule on sama määruse alusel juba toetust antud;· taotlejas või samasse kontserni kuuluvas äriühingus on riigi või kohaliku omavalitsuse osalus;· taotlejal või seaduslikul esindajal on kehtiv kriminaalkaristus;· projekti tegevustega on alustatud või kohustusi võetud enne taotluse esitamist EISile;· investeering ei ole uus majandustegevust soodustav alginvesteering;· tegevus või kulu ei ole abikõlblik",kõrge,"Välistavad tingimused tulenevad määruse taotleja nõuetest, toetatavate tegevuste kirjeldusest, abikõlblike kulude tingimustest ning projekti alustamise piirangust. (Riigi Teataja)"
+Kontrollkohad,"· kontrolli EISi vastuvõtu tegelikku avatust ja eelarve jääki;· kontrolli, kas investeeringu tegevuskoht on Harjumaal või väljaspool Harjumaad;· kontrolli toetuse osakaalu: kuni 15%, Harjumaal kuni 10%;· kontrolli, kas projekt vastab uue majandustegevust soodustava alginvesteeringu tingimusele;· kontrolli, kas tegevuse mitmekesistamisel on uus EMTAK neljakohaline kood varasemast erinev;· kontrolli investeeringu minimaalset mahtu EISi lehel märgitud 6,7–10 miljoni euro vahemiku järgi;· kontrolli abikõlblikke kulusid ja vara uudsuse nõuet;· kontrolli, et projekt kestab kuni 36 kuud;· kontrolli, et enne taotlemist on läbitud eelnõustamine ja saadud projektiplaanile eelhinnang;· kontrolli hindamiskriteeriumide täitmist ja minimaalset koondhinnet",kõrge,"Need on tingimused, mis sõltuvad projektist, tegevuskohast, taotlusprotsessist, eelarve jäägist või hindamisest. (EIS)"
+,,,
+Ebaselged või kontrollimist vajavad kohad,,,
+,,,
+· Kogu toetussumma (€) – kasutaja antud EISi lehelt ja määrusest ei leidnud kogu meetme eelarvet.,,,
+"· Investeeringu minimaalne maht – EISi lehel on märgitud vähemalt 6,7–10 miljoni euro ulatuses, kuid tabelisse kandmisel tasub täpsustada, millest vahemik täpselt sõltub.",,,
+"· AI nõue – AI ei ole meetmes eraldi nimetatud; AI-projekt sobib ainult siis, kui see vastab investeeringu ja abikõlblike kulude tingimustele.",,,
+"· Ettevõtte suurus – allikas ei piira taotlejat VKEga, seega pakkusin „kõik“, kuid tegelik sobivus sõltub regionaalabi ja grupierandi piirangutest.",,,
+"· Sektor – positiivset sihtsektorit ei ole, kuid välistatud EMTAK tegevusalad tuleb kindlasti kontrollida.",,,
+"· Staatus – EISi leht ütleb „Avatud“, määrus ütleb „jooksvalt“; tabelisse sobib „jooksvalt avatud“, kuid vastuvõtt võib lõppeda eelarve jäägi täitumisel.",,,
+,,,
+Võimalikud lisalingid kontrollimiseks,,,
+,,,
+"Lisalinke ei paku, sest kasutaja antud EISi leht ja määrus on selle meetme tabeliväljade täitmiseks peamised allikad.",,,

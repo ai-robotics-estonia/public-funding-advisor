@@ -1,0 +1,22 @@
+.git
+.gitignore
+.venv
+rahastusmeetmed_venv
+.pytest_cache
+__pycache__
+**/__pycache__
+*.py[cod]
+
+# Runtime state belongs in the mounted volume, never in the image.
+data
+.env
+.env.*
+!.env.example
+
+.claude
+.cursor
+.vscode
+.specstory
+docs
+*.md
+!scraper/README.md

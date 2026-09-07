@@ -1,0 +1,30 @@
+Väli,Soovitatud väärtus,Kindlus,Põhjendus
+Meetme nimetus,Suuremahuliste investeeringute toetus,kõrge,Ametlik nimetus on EISi lehel ja määruses sama. (EIS)
+Suurim toetus (€),20 000 000,kõrge,EISi lehel on suurim toetus 20 000 000 eurot; määrus kinnitab maksimaalseks toetuseks 20 000 000 eurot projekti kohta. (EIS)
+Omafinantseering (%),vähemalt 85%,kõrge,"EISi lehel on omafinantseering „vähemalt 85%“. Määruse järgi on toetuse maksimaalne osakaal 10% või eritingimustel 15%, seega omafinantseering on vähemalt 85% ja Harjumaal vähemalt 90%. (EIS)"
+Kogu toetussumma (€),määramata,kõrge,"Antud allikates ei ole meetme või vooru kogu eelarvet välja toodud. Määrus ütleb vaid, et EIS teavitab eelarvest oma veebilehel. (Riigi Teataja)"
+Staatus,avatud,kõrge,EISi lehel on staatus „Avatud“ ning taotluste esitamine on jooksev. (EIS)
+Meetme kirjeldus,"Toetus on mõeldud Eestis suuremahuliste investeeringute tegemiseks, et kasvatada ettevõtjate konkurentsivõimet, ekspordivõimekust ja lisandväärtust. Toetust saab taotleda Eesti äriregistrisse kantud äriühing, kes investeerib põhivarasse vähemalt 100 miljonit eurot ja loob investeeringu tulemusena vähemalt 30 uut töökohta. Toetatakse investeeringut, mille abikõlblikud kulud on vähemalt 100 miljonit eurot. Projekti abikõlblikkuse periood kestab üldjuhul kuni 48 kuud ning tegevusi ei tohi alustada enne taotluse esitamist. Enne taotlemist tuleb läbida EISi eelnõustamine.",kõrge,"Kirjeldus sünteesib EISi lehe ja määruse peamised tingimused: eesmärk, taotleja, investeeringu maht, töökohtade loomine, projekti kestus ja eelnõustamine. (EIS)"
+Link,EISi meetme leht; Riigi Teataja määrus,kõrge,Kasutaja andis mõlemad allikad; EISi leht viitab ka toetuse määrusele. (EIS)
+Sobiv taotleja,ettevõte,kõrge,Toetust võib taotleda Eesti äriregistrisse kantud äriühing. (Riigi Teataja)
+Ettevõtte suurus,kõik,kõrge,Määrus eristab VKEd ja suurettevõtjat ning sätestab toetatavad investeeringud mõlemale. (Riigi Teataja)
+Piirkond,Eesti,kõrge,Eesmärk on soodustada suuremahulisi investeeringuid Eestis ning taotleja peab olema Eesti äriregistrisse kantud äriühing. (Riigi Teataja)
+Sektor,kõik sektorid,keskmine,EISi leht ja määrus ei nimeta konkreetset sektorifookust; samas kohalduvad regionaalabi ja üldise grupierandi määruse välistused. (Riigi Teataja)
+Valdkond,eksport; tööstusinnovatsioon; muu,keskmine,"Meetme eesmärk on konkurentsivõime, ekspordivõimekuse ja lisandväärtuse kasv. Tööstusinnovatsioon on tõlgenduslik, sest meede on sisult suuremahulise investeeringu meede, mitte kitsalt T&A või digitaliseerimise meede. (EIS)"
+Projekti tüüp,investeering,kõrge,Toetus on ette nähtud vähemalt 100 miljoni euro suuruse abikõlbliku kuluga investeeringuks. (Riigi Teataja)
+AI nõue,ei ole vajalik,kõrge,AI ei ole antud allikates meetme tingimusena nimetatud; meede on investeeringumeede.
+T&A nõue,ei ole vajalik,kõrge,T&A ei ole allikates kohustusliku tingimusena nimetatud; toetatakse suuremahulist investeeringut. (Riigi Teataja)
+Arengufaas,skaleerimine,keskmine,Meede sobib eelkõige suuremahulise investeeringu ja tegevuse laiendamise faasi; määruses nimetatakse muu hulgas tootmisvõimsuse suurendamist ja investeeringut. (Riigi Teataja)
+Partneri nõue,ei,kõrge,Taotlemine on kirjeldatud ühe äriühingu põhiselt; partneri või konsortsiumi nõuet ei ole antud allikates toodud. (Riigi Teataja)
+Ülikoolipartner,ei ole vajalik,kõrge,Ülikooli või teadusasutuse kaasamise nõuet ei ole antud allikates toodud.
+Välistavad tingimused,"• äriühing ei ole Eesti äriregistris;• põhivarainvesteering või abikõlblikud kulud jäävad alla 100 mln €;• investeeringu tulemusena ei looda vähemalt 30 uut töökohta;• avaliku sektori osalus taotlejas või kontserni äriühingus ületab 49%;• projektiga on alustatud või kohustused võetud enne taotluse esitamist;• sama äriühing või kontserni äriühing on juba selle määruse alusel toetust saanud;• taotleja on raskustes, maksevõlas, pankroti-/likvideerimismenetluses või kehtiva kriminaalkaristusega;• toetatavale tegevusele on saadud või taotletakse samal ajal muud toetust;• tegevus kuulub üldise grupierandi määruse välistuste alla;",kõrge,"Välistused tulenevad EISi lehe taotleja tingimustest ning määruse §-dest 2, 6, 9, 10 ja 12. (EIS)"
+Kontrollkohad,"• kontrolli eelnõustamise läbimist ja positiivse eelhinnangu kehtivust;• kontrolli toetuse eelarve vaba jääki;• kontrolli, kas taotlemine on jätkuvalt jooksev või voorupõhine;• kontrolli investeeringu asukohta, sest Harjumaa ja väljaspool Harjumaad tingimused mõjutavad toetuse osakaalu;• kontrolli loodavate töökohtade arvu ja keskmise brutokuupalga nõuet;• kontrolli kinnisasja omandi-, rendi- või asjaõiguse tingimust;• kontrolli abikõlblikke kulusid ja käibemaksu/mitteabikõlblike kulude välistust;• kontrolli hindamisjuhendi kriteeriume ja miinimumhindeid;",kõrge,"Need tingimused on kas ajas muutuvad, sõltuvad projektist või vajavad taotlemisel dokumentaalset kontrolli. (Riigi Teataja)"
+,,,
+Ebaselged või kontrollimist vajavad kohad,,,
+"Kogu toetussumma / meetme eelarve jäi antud allikates määramata; määrus ütleb, et EIS teavitab eelarvest veebilehel, kuid avatud lehe tekstis konkreetset eelarvet ei olnud.",,,
+"Sektor on märgitud „kõik sektorid“ keskmise kindlusega, sest allikas ei anna sektoripiirangut, kuid regionaalabi ja üldise grupierandi määruse välistused võivad teatud tegevused välistada.",,,
+"Valdkond on osaliselt tõlgenduslik, sest meede ei ole kitsalt innovatsiooni-, AI-, T&A- ega digitaliseerimismeede, vaid suuremahulise investeeringu toetus.",,,
+"Omafinantseering vajab projekti tasandil kontrolli: üldjuhul tuleneb vähemalt 85% omafinantseering 15% maksimaalsest toetusmäärast, kuid Harjumaal on toetuse maksimaalne osakaal 10%, mis tähendab vähemalt 90% omafinantseeringut.",,,
+"Staatus on EISi lehe põhjal „avatud“, kuid määruse järgi võib taotlemine olla jooksev või voorupõhine ning vastuvõtmist saab lõpetada või peatada eelarve jäägi tõttu.",,,
+Võimalikud lisalingid kontrollimiseks,,,
+"Täiendavaid lisalinke ei paku, sest kasutaja antud EISi leht ja Riigi Teataja määrus katavad põhilised tabeliväljad.",,,

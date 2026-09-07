@@ -1,0 +1,37 @@
+Väli,Soovitatud väärtus,Kindlus,Põhjendus
+Meetme nimetus,Biotech call September 2026,kõrge,Meetme nimetus on toodud koik.csv-s ja Eureka võrgustiku lehel.
+Suurim toetus (€),500 000,kõrge,Plaan: maksimaalne rahastussumma projekti kohta on 500 000 eurot.
+Omafinantseering (%),20–35%,kõrge,"Plaan: idufirmad ja väikeettevõtted saavad kuni 80% (sõltuvalt ettevõtte suurusest ja tegevuse iseloomust); suurettevõtted kuni 65% (sõltuvalt tegevuse iseloomust). Sellest tuleneb omafinantseering 20–35%."
+Kogu toetussumma (€),määramata,keskmine,Koik.csv-s ega plaanis ei ole Eesti riiklikku kogueelarvet toodud.
+Staatus,avatud,kõrge,Koik.csv andmetel on staatus avatud.
+Meetme kirjeldus,"Eureka Network Projects raamistikus toimuv biotehnoloogia-teemaline rahvusvaheline koostöövoor. Meede on suunatud biotehnoloogia valdkonna koostööprojektidele, millel on teadus-, arendus- ja innovatsioonisisu ning potentsiaal uute toodete, protsesside või teenuste arendamiseks ja turuleviimiseks. Taotlemine eeldab rahvusvahelist konsortsiumi ning osalejate rahastamine sõltub riiklikest rahastusreeglitest. Tähtaeg on 25. september 2026.",kõrge,Kirjeldus pärineb koik.csv-st.
+Link,https://www.eurekanetwork.org/programmes-and-calls/network-projects/biotech-call-september-2026/,kõrge,Link on toodud koik.csv-s.
+Sobiv taotleja,konsortsium,kõrge,"Koik.csv: sobiv taotleja on konsortsium. Plaan: EIS rahastab VKEde ja suurettevõtete T&A kulusid."
+Ettevõtte suurus,VKE; suurettevõte,kõrge,Plaan: rahastus on mõeldud nii VKEdele kui suurettevõtetele.
+Piirkond,rahvusvaheline,kõrge,Koik.csv: piirkond on rahvusvaheline.
+Sektor,tervis; muu,kõrge,Koik.csv andmetel.
+Valdkond,biotehnoloogia,kõrge,Koik.csv kirjeldus ja Eureka vooru pealkiri viitavad biotehnoloogia valdkonnale.
+Projekti tüüp,teadus- ja arendusprojekt; tootearendus,kõrge,"Plaan ja kirjeldus: meede toetab teadus-, arendus- ja innovatsioonisisuga projekte, mille eesmärk on uute toodete, protsesside või teenuste arendamine ja turuleleviimine."
+AI nõue,sobib,keskmine,AI nõuet ei ole sõnaselgelt mainitud.
+T&A nõue,nõutav,kõrge,"Plaan: EIS rahastab T&A kulusid. Kirjeldus rõhutab teadus-, arendus- ja innovatsioonisisu."
+Arengufaas,prototüüp; piloot; turuleviimine,keskmine,"Kirjeldus viitab uute toodete ja teenuste arendamisele ning turuleviimisele, kuid täpset TRL-vahemikku ei ole toodud."
+Partneri nõue,konsortsium nõutav,kõrge,Koik.csv: partneri nõue on konsortsium nõutav.
+Ülikoolipartner,sobiv,keskmine,Ülikoolipartneri nõuet ei ole sõnaselgelt mainitud.
+Välistavad tingimused,"• ettevõte ei ole Eesti äriregistris registreeritud
+• ettevõte on raskustes
+• ettevõttel puuduvad vajalikud vahendid projekti omafinantseeringuks
+• ettevõttel puudub oluline mõju Eesti majandusele",kõrge,Välistused tulenevad plaanist.
+Kontrollkohad,"• kontrolli taotlemise tähtaega: 25. september 2026
+• kontrolli riiklikke rahastustingimusi EIS veebilehelt
+• kontrolli toetuse määra ettevõtte tüübi järgi: idufirmad ja väikeettevõtted kuni 80%; suurettevõtted kuni 65%
+• kontrolli toetuse ülempiiri projekti kohta: 500 000 eurot
+• kontrolli, kas ettevõte on Eesti äriregistris registreeritud
+• kontrolli, kas ettevõte ei ole raskustes
+• kontrolli omafinantseeringu katmise võimekust
+• kontrolli ettevõtte mõju Eesti majandusele: töökohtade, tootmise, arendustegevuse, IO ja müügitulu asukoht",kõrge,Kontrollkohad on koostatud koik.csv andmete ja plaani põhjal.
+,,,
+2) Ebaselged või kontrollimist vajavad kohad,,,
+"Kogu toetussumma: koik.csv-s ega plaanis ei ole Eesti riiklikku kogueelarvet toodud. Vajab kontrollimist EIS veebilehelt.",,,
+"Täpne toetuse määr: plaan märgib, et toetuse suurus sõltub ettevõtte suurusest ja tegevuse iseloomust, kuid täpsemaid piire ei seleta.",,,
+3) Võimalikud lisalingid kontrollimiseks,,,
+https://www.eurekanetwork.org/programmes-and-calls/network-projects/biotech-call-september-2026/ — Eureka võrgustiku lehel olev vooru leht; vajalik tingimuste ja tähtaja kontrolliks.,,,

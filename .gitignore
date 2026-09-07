@@ -1,0 +1,38 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Cursor IDE
+.cursor/
+.cursorindexingignore
+
+# VS Code
+.vscode/
+
+# SpecStory (local chat history)
+.specstory/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+rahastusmeetmed_venv/
+.pytest_cache/
+
+# Node
+node_modules/
+
+# Logs and temp
+*.log
+*.tmp
+.cache/
+
+# App data (SQLite + uploads)
+data/

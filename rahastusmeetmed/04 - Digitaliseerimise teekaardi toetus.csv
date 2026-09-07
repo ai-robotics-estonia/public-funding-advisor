@@ -1,0 +1,28 @@
+Väli,Soovitatud väärtus,Kindlus,Põhjendus
+Meetme nimetus,Digitaliseerimise teekaardi toetus,kõrge,Ametlik nimetus EISi lehel.
+Suurim toetus (€),10 000,kõrge,EISi leht ja määrus käsitlevad teekaardi koostamise toetuse ülempiirina 10 000 €.
+Omafinantseering (%),30–50%,kõrge,"Toetuse osakaal on üldjuhul 50%; VTA alusel väljaspool Harjumaad ja Tartu linna kuni 70%, seega omafinantseering vastavalt 50% või 30%."
+Kogu toetussumma (€),2 500 000,kõrge,EISi lehel on meetme eelarvena toodud 2 500 000 €.
+Staatus,avatud,kõrge,EISi lehel on taotlemise staatus „Avatud”.
+Meetme kirjeldus,"Toetus on mõeldud Eesti äriühingutele digitaliseerimise teekaardi koostamiseks. Teekaart on kolmeaastase tegevuskavaga strateegiadokument, mis hindab ettevõtte digitaliseerimise, automatiseerimise ja küberturvalisuse hetkeolukorda ning kirjeldab kitsaskohti, arenguvõimalusi, vajalikke investeeringuid ja nende mõju. Toetust saab kasutada ettevõtjavälise teenuseosutaja nõustamisteenuse kuluks. Meede ei kata selles kirjes teekaardis kirjeldatud nõustamis- ja arendustegevuste elluviimist, mille jaoks tehakse eraldi tabelikirje. Projekti kestus on kuni kuus kuud.",kõrge,"Kirjeldus on piiritletud ainult teekaardi koostamise toetusega, mitte määruses sisalduva teise tegevusega."
+Link,https://eis.ee/teenused/digitaliseerimise-teekaardi-toetus/,kõrge,Kasutaja antud EISi link.
+Sobiv taotleja,ettevõte,kõrge,Taotleja peab olema Eesti äriregistrisse kantud äriühing.
+Ettevõtte suurus,kõik,kõrge,EISi lehe järgi on toetus mõeldud igas suuruses Eesti äriühingutele.
+Piirkond,Eesti,kõrge,Taotleja peab olema Eesti äriregistrisse kantud äriühing.
+Sektor,"kõik sektorid, v.a välistatud tegevusalad",kõrge,"Meede ei ole suunatud ühele sektorile, kuid määruses on välistatud tegevusalad."
+Valdkond,digitaliseerimine; automatiseerimine; küberturve,kõrge,"Teekaart käsitleb ettevõtte digitaliseerimise, automatiseerimise ja küberturvalisuse olukorda ning arenguvõimalusi."
+Projekti tüüp,digitaliseerimise analüüs; teekaardi koostamine,kõrge,"Tegevus on digitaliseerimise teekaardi koostamine, mitte arendustegevuste elluviimine."
+AI nõue,sobib,keskmine,"AI ei ole kohustuslik, kuid tehisintellekt võib olla üks digitehnoloogiatest, mida teekaardi koostamisel käsitletakse."
+T&A nõue,ei ole vajalik,kõrge,Toetus ei eelda teadus- ja arendustegevuse läbiviimist; toetatav tegevus on teekaardi koostamine.
+Arengufaas,kontseptsioon; planeerimine,kõrge,"Teekaart on analüüsi- ja planeerimisdokument, mis eelneb arendustegevuste elluviimisele."
+Partneri nõue,teenusepakkuja vajalik,kõrge,Teekaart tuleb koostada ettevõtjavälise teenuseosutaja abil.
+Ülikoolipartner,ei ole vajalik,kõrge,Ülikooli või teadusasutuse kaasamist ei nõuta; vajalik on ettevõtjaväline teenuseosutaja.
+Välistavad tingimused,• ettevõte ei ole Eesti äriregistris; • kahe eelneva majandusaasta keskmine müügitulu alla 200 000 €; • ettevõte on varem saanud digidiagnostika või digitaliseerimise teekaardi toetust; • VTA piirmäär 300 000 € on ületatud; • ettevõte on raskustes või tagasinõude otsus on täitmata; • põhitegevusala kuulub välistatud EMTAK tegevusalade hulka; • projektiga on alustatud enne taotluse esitamist; • tegevus ei vasta „ei kahjusta oluliselt” põhimõttele.,kõrge,Välistavad tingimused on piiritletud teekaardi koostamise toetuse sobivust mõjutavate nõuetega.
+Kontrollkohad,"• kontrolli jooksva vooru eelarvejääki ja vastuvõtu avatust; • kontrolli VTA jääki; • kontrolli EMTAK põhitegevusala välistusi; • kontrolli kahe majandusaasta keskmist müügitulu; • kontrolli, kas ettevõte on varem saanud digidiagnostika või digitaliseerimise teekaardi toetust; • kontrolli teenuseosutaja ja hinnapakkumise nõuetele vastavust; • kontrolli projekti kestust ja alguskuupäeva; • kontrolli „Eesti 2035” ja „ei kahjusta oluliselt” kinnitusi.",kõrge,"Kontrollkohad puudutavad jooksvalt muutuvat staatust, riigiabi jääki, teenuseosutaja nõudeid ja taotleja vastavust."
+,,,
+Ebaselged või kontrollimist vajavad kohad,,,
+Selles parandatud tabelis on kirje piiritletud ainult digitaliseerimise teekaardi koostamise toetusega. Määruses sisalduv teekaardis toodud kitsaskohtade lahendamiseks vajalik nõustamis- ja arendustegevuse toetus tuleb kajastada eraldi tabelina.,,,
+"Enne lõplikku kasutamist tasub üle kontrollida EISi lehel kuvatav taotluste vastuvõtu staatus ja eelarvejääk, sest jooksvalt avatud meetme puhul võib vastuvõtt muutuda.",,,
+,,,
+Võimalikud lisalingid kontrollimiseks,,,
+"Lisalinke ei ole praegu vaja, sest kasutaja antud EISi leht ja Riigi Teataja määrus on selle tabelikirje täitmiseks piisavad.",,,
